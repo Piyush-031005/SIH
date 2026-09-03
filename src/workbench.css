@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  --bg-main: #111144;
-  --bg-panel: #181850;
-  --bg-hover: #223382;
-  --border-color: #223382;
+  --bg-main: #323639;
+  --bg-panel: #222527;
+  --bg-hover: #464a4d;
+  --border-color: #464a4d;
   --text-primary: #F4F1EC;
-  --text-secondary: #9BACD8;
+  --text-secondary: #9bc9d5;
   
-  --brand-cream: #F4F1EC;
+  --brand-cream: #9bc9d5;
   --brand-brown: #F98513; /* Yellow/Gold for accents */
   --brand-tan: #DAD1C8;
   

@@ -247,7 +247,7 @@ export default function WorkbenchDashboard() {
             </div>
           </div>
 
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#111144', border: '1px solid var(--border-color)' }}>
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#323639', border: '1px solid var(--border-color)' }}>
             <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
@@ -305,7 +305,7 @@ export default function WorkbenchDashboard() {
               </g>
 
               {/* Functional Zones / Refinery Units */}
-              <g fill="#181850" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
+              <g fill="#222527" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
                 {/* Crude Tank Farm */}
                 <rect x="50" y="50" width="200" height="250" rx="4" />
                 
@@ -331,7 +331,7 @@ export default function WorkbenchDashboard() {
                 <rect x="850" y="450" width="150" height="200" rx="4" />
                 
                 {/* Truck Loading Gantry (New) */}
-                <rect x="1020" y="450" width="120" height="200" rx="4" fill="rgba(34, 51, 130, 0.4)" stroke="var(--border-color)" />
+                <rect x="1020" y="450" width="120" height="200" rx="4" fill="#222527" stroke="var(--border-color)" />
                 
                 {/* Utilities / Power */}
                 <polygon points="50,450 250,450 280,550 250,650 50,650" />
@@ -433,7 +433,7 @@ export default function WorkbenchDashboard() {
                 
                 {/* Warning Popup Overlay */}
                 <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="#181850" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <rect x="70" y="-85" width="180" height="65" fill="#222527" stroke="#ef4444" strokeWidth="1.5" rx="4" />
                 <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
                 <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
                 <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
