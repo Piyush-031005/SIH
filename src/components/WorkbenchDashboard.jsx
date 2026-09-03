@@ -251,10 +251,12 @@ export default function WorkbenchDashboard() {
             <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
-                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="var(--border-color)" opacity="0.3" strokeWidth="1"/>
+                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(16, 185, 129, 0.25)" opacity="0.5" strokeWidth="1"/>
+                  <path d="M 0 50 L 50 0" fill="none" stroke="rgba(16, 185, 129, 0.15)" opacity="0.3" strokeWidth="0.5"/>
                 </pattern>
                 <pattern id="gridSmall" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--border-color)" opacity="0.15" strokeWidth="0.5"/>
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(16, 185, 129, 0.15)" opacity="0.2" strokeWidth="0.5"/>
+                  <path d="M 0 10 L 10 0" fill="none" stroke="rgba(16, 185, 129, 0.05)" opacity="0.15" strokeWidth="0.2"/>
                 </pattern>
                 <filter id="glowRed">
                   <feGaussianBlur stdDeviation="3" result="coloredBlur"/>

@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  FileText, Cpu, Database, Eye, ShieldCheck, 
-  FileEdit, ShieldAlert, UserCheck, Lock, Activity, Server, Network
+  FileText, Cpu, Database, ShieldCheck, 
+  Activity, Network, UploadCloud, CheckCircle2
 } from 'lucide-react';
-
-const WORKFLOW = [
-  { id: 1, name: 'Intake', details: 'scanned_report.pdf' },
-  { id: 2, name: 'Classify', details: 'Commander Router' },
-  { id: 3, name: 'Retrieve', details: 'Bi-Temporal Graph' },
-  { id: 4, name: 'Agent Pool', details: 'Parallel Execution' },
-  { id: 5, name: 'Sandbox', details: 'Zero-Network CodeAct' },
-  { id: 6, name: 'Verify', details: 'Evidence Grounding' },
-  { id: 7, name: 'Output', details: 'Approved DOCX' }
-];
 
 const EXPLANATIONS = {
   1: "User uploads scanned PDF securely. Local validation complete.",
@@ -30,237 +20,117 @@ export default function RichDashboard() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveStep(prev => (prev >= 7 ? 1 : prev + 1));
-    }, 4500); 
+    }, 3000); 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="rich-dashboard">
+    <div className="rich-dashboard-3panel" style={{ display: 'flex', width: '100vw', height: '100vh', background: 'var(--bg-main)', color: 'var(--text-primary)', overflow: 'hidden' }}>
       
-      {/* 1. Left Sidebar: Live Audit & Explanation */}
-      <div className="rd-sidebar">
-        <div className="rd-brand">
-          <div className="mrpl-logo">MRPL</div>
+      {/* PANEL 1: USER VIEW (INPUT) */}
+      <div style={{ flex: '0 0 25%', borderRight: '1px solid var(--border-color)', background: 'var(--bg-panel)', padding: '2rem', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+          <div style={{ background: 'var(--brand-brown)', color: '#fff', padding: '0.5rem', borderRadius: '4px', fontWeight: 'bold' }}>MRPL</div>
           <div>
-            <h2>Sovereign AI</h2>
-            <p>Knowledge-Work Runtime</p>
+            <h2 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--text-primary)' }}>Sovereign AI</h2>
+            <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>User Portal</p>
           </div>
         </div>
-
-        <div className="rd-steps-container">
-          <h3 className="sidebar-title">Execution Trace</h3>
-          {WORKFLOW.map(step => (
-            <div key={step.id} className={`rd-step ${activeStep === step.id ? 'active' : ''} ${activeStep > step.id ? 'past' : ''}`}>
-              <div className="step-indicator">
-                {activeStep > step.id ? <ShieldCheck size={14} /> : step.id}
-              </div>
-              <div className="step-text">
-                <strong>{step.name}</strong>
-                <span>{step.details}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="rd-proof-box">
-          <h3 className="sidebar-title">Sovereignty Proof</h3>
-          <div className="proof-item">
-            <Lock size={16} /> <span>Network: Air-Gapped</span>
+        
+        <div style={{ marginTop: '2rem', flex: 1 }}>
+          <h3 style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Upload Document</h3>
+          
+          <div style={{ border: activeStep === 1 ? '2px solid var(--brand-brown)' : '2px dashed var(--border-color)', borderRadius: '8px', padding: '2rem', textAlign: 'center', transition: 'all 0.3s', background: activeStep === 1 ? 'rgba(249, 133, 19, 0.1)' : 'transparent' }}>
+            <UploadCloud size={32} color={activeStep === 1 ? 'var(--brand-brown)' : 'var(--text-secondary)'} style={{ margin: '0 auto 1rem' }} />
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>Drag & Drop Maintenance Log</p>
+            <p style={{ margin: '0.5rem 0 0', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>PDF, DOCX, CSV</p>
           </div>
-          <div className="proof-item">
-            <ShieldAlert size={16} /> <span>Egress: Default Deny</span>
-          </div>
-          <div className="proof-item">
-            <Server size={16} /> <span>Inference: 100% Local</span>
+
+          <div style={{ marginTop: '2rem', padding: '1rem', background: 'var(--bg-hover)', borderRadius: '8px', borderLeft: '3px solid var(--brand-brown)' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.85rem' }}>Current Status:</h4>
+            <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{EXPLANATIONS[activeStep]}</p>
           </div>
         </div>
       </div>
 
-      {/* 2. Main Canvas: Complex Architecture & Engine */}
-      <div className="rd-canvas">
-        {/* Animated Parallax Grid */}
-        <div className="blueprint-grid"></div>
+      {/* PANEL 2: ENGINE PIPELINE (PROCESSING) */}
+      <div style={{ flex: '1', position: 'relative', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <h2 style={{ position: 'absolute', top: '2rem', left: '2rem', fontSize: '1.1rem', letterSpacing: '2px', color: 'var(--text-secondary)' }}>BACKEND ENGINE WORKFLOW</h2>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '3rem', transform: 'scale(0.85)' }}>
+          {/* Router Node */}
+          <div style={{ background: activeStep === 2 ? 'var(--bg-hover)' : 'var(--bg-panel)', padding: '1.5rem', borderRadius: '12px', border: activeStep === 2 ? '2px solid var(--brand-brown)' : '1px solid var(--border-color)', textAlign: 'center', transition: 'all 0.3s', minWidth: '150px' }}>
+            <Network size={32} color="var(--brand-cream)" style={{ margin: '0 auto 1rem' }} />
+            <h4 style={{ margin: 0, fontSize: '0.9rem' }}>Router</h4>
+          </div>
 
-        <h2 className="canvas-title">BACKEND ARCHITECTURE & ENGINE EXECUTION</h2>
+          <div style={{ width: '50px', height: '2px', background: activeStep >= 3 ? 'var(--brand-brown)' : 'var(--border-color)' }}></div>
 
-        {/* 3D Isometric container for the whole diagram */}
-        <div className="architecture-diagram container-3d">
+          {/* Memory Node */}
+          <div style={{ background: activeStep === 3 ? 'var(--bg-hover)' : 'var(--bg-panel)', padding: '1.5rem', borderRadius: '12px', border: activeStep === 3 ? '2px solid var(--brand-brown)' : '1px solid var(--border-color)', textAlign: 'center', transition: 'all 0.3s', minWidth: '150px' }}>
+            <Database size={32} color="var(--brand-cream)" style={{ margin: '0 auto 1rem' }} />
+            <h4 style={{ margin: 0, fontSize: '0.9rem' }}>Vector DB</h4>
+          </div>
+
+          <div style={{ width: '50px', height: '2px', background: activeStep >= 4 ? 'var(--brand-brown)' : 'var(--border-color)' }}></div>
+
+          {/* Engine Node */}
+          <div style={{ background: activeStep === 4 ? 'var(--bg-hover)' : 'var(--bg-panel)', padding: '1.5rem', borderRadius: '12px', border: activeStep === 4 ? '2px solid var(--brand-brown)' : '1px solid var(--border-color)', textAlign: 'center', transition: 'all 0.3s', minWidth: '150px' }}>
+            <Cpu size={32} color="var(--brand-cream)" style={{ margin: '0 auto 1rem' }} />
+            <h4 style={{ margin: 0, fontSize: '0.9rem' }}>Agent Pool</h4>
+          </div>
+
+          <div style={{ width: '50px', height: '2px', background: activeStep >= 5 ? 'var(--brand-brown)' : 'var(--border-color)' }}></div>
+
+          {/* Verify Node */}
+          <div style={{ background: (activeStep === 5 || activeStep === 6) ? 'var(--bg-hover)' : 'var(--bg-panel)', padding: '1.5rem', borderRadius: '12px', border: (activeStep === 5 || activeStep === 6) ? '2px solid var(--brand-brown)' : '1px solid var(--border-color)', textAlign: 'center', transition: 'all 0.3s', minWidth: '150px' }}>
+            <ShieldCheck size={32} color="var(--brand-cream)" style={{ margin: '0 auto 1rem' }} />
+            <h4 style={{ margin: 0, fontSize: '0.9rem' }}>Verification</h4>
+          </div>
+        </div>
+      </div>
+
+      {/* PANEL 3: FINAL REPORT VIEW */}
+      <div style={{ flex: '0 0 30%', borderLeft: '1px solid var(--border-color)', background: '#f5ebd9', padding: '2rem', display: 'flex', flexDirection: 'column' }}>
+        <h3 style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#594a38', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <FileText size={16} /> Generated Final Report
+        </h3>
+        
+        <div style={{ flex: 1, background: '#ffffff', border: '1px solid #e0d5c1', borderRadius: '4px', padding: '2rem', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', color: '#3b2f21', position: 'relative', overflow: 'hidden' }}>
           
-          {/* SVG Connections with Animated Data Streams */}
-          <svg className="rd-svg-lines" preserveAspectRatio="none">
-            {/* Input to Router */}
-            <path id="path1" d="M 400 450 C 440 450, 460 450, 480 450" className={`line ${activeStep >= 1 ? 'active' : ''}`} />
-            
-            {/* Router to DB */}
-            <path id="path2" d="M 800 420 C 850 380, 850 240, 900 240" className={`line ${activeStep >= 2 ? 'active' : ''}`} />
-            
-            {/* Router to Engine */}
-            <path id="path3" d="M 800 480 C 850 520, 850 660, 900 660" className={`line ${activeStep >= 2 ? 'active' : ''}`} />
-            
-            {/* DB to Sandbox */}
-            <path id="path4" d="M 1220 240 C 1300 240, 1300 420, 1380 420" className={`line ${activeStep >= 3 ? 'active' : ''}`} />
-            
-            {/* Engine to Sandbox */}
-            <path id="path5" d="M 1340 660 C 1380 660, 1350 480, 1380 480" className={`line ${activeStep >= 4 ? 'active' : ''}`} />
-
-            {/* Glowing Data Packets moving along the paths in STREAMS */}
-            {activeStep === 1 && (
-              <>
-                <circle r="4" fill="#ea580c" className="packet packet-3d"><animateMotion dur="1.5s" begin="0s" repeatCount="indefinite"><mpath href="#path1"/></animateMotion></circle>
-                <circle r="4" fill="#ea580c" className="packet packet-3d"><animateMotion dur="1.5s" begin="0.5s" repeatCount="indefinite"><mpath href="#path1"/></animateMotion></circle>
-                <circle r="4" fill="#ea580c" className="packet packet-3d"><animateMotion dur="1.5s" begin="1s" repeatCount="indefinite"><mpath href="#path1"/></animateMotion></circle>
-              </>
-            )}
-            
-            {activeStep === 2 && (
-              <>
-                <circle r="4" fill="#ea580c" className="packet packet-3d"><animateMotion dur="2s" begin="0s" repeatCount="indefinite"><mpath href="#path3"/></animateMotion></circle>
-                <circle r="4" fill="#ea580c" className="packet packet-3d"><animateMotion dur="2s" begin="0.6s" repeatCount="indefinite"><mpath href="#path3"/></animateMotion></circle>
-                <circle r="4" fill="#ea580c" className="packet packet-3d"><animateMotion dur="2s" begin="1.2s" repeatCount="indefinite"><mpath href="#path3"/></animateMotion></circle>
-              </>
-            )}
-
-            {activeStep === 3 && (
-              <>
-                <circle r="4" fill="#3b82f6" className="packet packet-3d"><animateMotion dur="2.5s" begin="0s" repeatCount="indefinite"><mpath href="#path4"/></animateMotion></circle>
-                <circle r="4" fill="#3b82f6" className="packet packet-3d"><animateMotion dur="2.5s" begin="0.8s" repeatCount="indefinite"><mpath href="#path4"/></animateMotion></circle>
-                <circle r="4" fill="#3b82f6" className="packet packet-3d"><animateMotion dur="2.5s" begin="1.6s" repeatCount="indefinite"><mpath href="#path4"/></animateMotion></circle>
-              </>
-            )}
-
-            {activeStep === 4 && (
-              <>
-                <circle r="4" fill="#10b981" className="packet packet-3d"><animateMotion dur="2s" begin="0s" repeatCount="indefinite"><mpath href="#path5"/></animateMotion></circle>
-                <circle r="4" fill="#10b981" className="packet packet-3d"><animateMotion dur="2s" begin="0.6s" repeatCount="indefinite"><mpath href="#path5"/></animateMotion></circle>
-                <circle r="4" fill="#10b981" className="packet packet-3d"><animateMotion dur="2s" begin="1.2s" repeatCount="indefinite"><mpath href="#path5"/></animateMotion></circle>
-              </>
-            )}
-          </svg>
-
-          {/* Nodes - Positioned massively with 3D classes */}
-          
-          <div className={`arch-node node-3d node-input ${activeStep === 1 ? 'pulse-3d' : ''}`} style={{ top: '390px', left: '80px' }}>
-            <div className="node-number-badge">1</div>
-            <div className="node-icon icon-3d"><FileText size={32} /></div>
-            <div className="node-details">
-              <h4>User Request</h4>
-              <p>Scanned PDF / Query</p>
+          {activeStep < 7 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', opacity: 0.5 }}>
+              <Activity size={32} style={{ marginBottom: '1rem' }} className="animate-pulse" />
+              <p>Awaiting engine execution...</p>
             </div>
-            {activeStep === 1 && <div className="node-active-text">{EXPLANATIONS[1]}</div>}
-            <div className="cyber-scanner"></div>
-          </div>
-
-          <div className={`arch-node node-3d node-router ${activeStep === 2 ? 'pulse-3d' : ''}`} style={{ top: '390px', left: '480px' }}>
-            <div className="node-number-badge">2</div>
-            <div className="node-icon icon-3d"><Network size={32} /></div>
-            <div className="node-details">
-              <h4>Commander Agent</h4>
-              <p>Task Classification & Routing</p>
-            </div>
-            <div className="node-tags">
-              <span>Risk Policy</span>
-              <span>Modality Check</span>
-            </div>
-            {activeStep === 2 && <div className="node-active-text">{EXPLANATIONS[2]}</div>}
-            <div className="cyber-scanner"></div>
-          </div>
-
-          <div className={`arch-node node-3d node-db ${activeStep === 3 ? 'pulse-3d' : ''}`} style={{ top: '180px', left: '900px' }}>
-            <div className="node-number-badge">3</div>
-            <div className="node-icon icon-3d"><Database size={32} /></div>
-            <div className="node-details">
-              <h4>Memory Retrieval</h4>
-              <p>Vector DB + Temporal Graph</p>
-            </div>
-            <div className="node-tags">
-              <span>Milvus</span>
-              <span>Neo4j</span>
-            </div>
-            {activeStep === 3 && <div className="node-active-text">{EXPLANATIONS[3]}</div>}
-            <div className="cyber-scanner"></div>
-          </div>
-
-          {/* THE ENGINE (Agent Pool) */}
-          <div className="engine-container-wrapper node-3d" style={{ top: '540px', left: '900px', width: '440px' }}>
-            <div className="node-number-badge" style={{ left: '-15px', top: '-15px' }}>4</div>
-            <h4 className="engine-title">Parallel Agent Execution Engine</h4>
-            <div className="engine-housing">
-              {/* Rotating Gear / Crankshaft Visualization */}
-              <div className={`crankshaft-gear gear-3d ${activeStep === 4 ? 'spinning' : ''}`}></div>
-              <div className="crankshaft-line line-3d"></div>
+          ) : (
+            <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '2px solid #594a38', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+                <h1 style={{ margin: 0, fontSize: '1.5rem', color: '#2a2015' }}>MAINTENANCE AUDIT</h1>
+                <span style={{ background: '#d4edda', color: '#155724', padding: '0.2rem 0.6rem', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold' }}>APPROVED</span>
+              </div>
               
-              <div className="pistons-row">
-                
-                <div className="rd-piston">
-                  <div className="rd-piston-label">Vision</div>
-                  <div className={`rd-piston-mech ${activeStep === 4 ? 'pumping' : ''}`} style={{ animationDelay: '0s' }}>
-                    <div className="rd-head head-3d" style={{ background: 'linear-gradient(135deg, #f472b6, #db2777)' }}><Eye size={20} /></div>
-                    <div className="rd-rod rod-3d"></div>
-                    <div className="rd-joint joint-3d" style={{ borderColor: '#db2777' }}></div>
-                  </div>
-                </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <p style={{ margin: '0 0 0.5rem 0', fontWeight: 'bold' }}>Unit: <span style={{ fontWeight: 'normal' }}>FCCU Reactor V-204</span></p>
+                <p style={{ margin: '0 0 0.5rem 0', fontWeight: 'bold' }}>Date: <span style={{ fontWeight: 'normal' }}>03-SEP-2026</span></p>
+              </div>
+              
+              <div style={{ background: '#fcf8f2', padding: '1rem', borderLeft: '3px solid #8b6d4d', marginBottom: '1.5rem' }}>
+                <h4 style={{ margin: '0 0 0.5rem 0', color: '#594a38' }}>Executive Summary</h4>
+                <p style={{ margin: 0, fontSize: '0.85rem', lineHeight: '1.5' }}>
+                  The localized AI pool has successfully extracted all schematics. Valve V-204 has been cleared of blockages. Deterministic grounding confirms 0% hallucination in this report.
+                </p>
+              </div>
 
-                <div className="rd-piston">
-                  <div className="rd-piston-label">Engineer</div>
-                  <div className={`rd-piston-mech ${activeStep === 4 ? 'pumping' : ''}`} style={{ animationDelay: '0.4s' }}>
-                    <div className="rd-head head-3d" style={{ background: 'linear-gradient(135deg, #60a5fa, #2563eb)' }}><Cpu size={20} /></div>
-                    <div className="rd-rod rod-3d"></div>
-                    <div className="rd-joint joint-3d" style={{ borderColor: '#2563eb' }}></div>
-                  </div>
-                </div>
-
-                <div className="rd-piston">
-                  <div className="rd-piston-label">Research</div>
-                  <div className={`rd-piston-mech ${activeStep === 4 ? 'pumping' : ''}`} style={{ animationDelay: '0.2s' }}>
-                    <div className="rd-head head-3d" style={{ background: 'linear-gradient(135deg, #a78bfa, #7c3aed)' }}><FileText size={20} /></div>
-                    <div className="rd-rod rod-3d"></div>
-                    <div className="rd-joint joint-3d" style={{ borderColor: '#7c3aed' }}></div>
-                  </div>
-                </div>
-
-                <div className="rd-piston">
-                  <div className="rd-piston-label">Verify</div>
-                  <div className={`rd-piston-mech ${activeStep === 4 ? 'pumping' : ''}`} style={{ animationDelay: '0.6s' }}>
-                    <div className="rd-head head-3d" style={{ background: 'linear-gradient(135deg, #34d399, #059669)' }}><ShieldCheck size={20} /></div>
-                    <div className="rd-rod rod-3d"></div>
-                    <div className="rd-joint joint-3d" style={{ borderColor: '#059669' }}></div>
-                  </div>
-                </div>
-
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: '#594a38', fontSize: '0.8rem', marginTop: 'auto', paddingTop: '2rem' }}>
+                <CheckCircle2 size={14} /> Signature Verified by AI Engine
               </div>
             </div>
-            {activeStep === 4 && <div className="engine-active-glow"></div>}
-            {activeStep === 4 && <div className="node-active-text">{EXPLANATIONS[4]}</div>}
-            <div className="cyber-scanner"></div>
-          </div>
-
-          <div className={`arch-node node-3d node-sandbox ${activeStep >= 5 ? 'pulse-3d' : ''}`} style={{ top: '390px', left: '1380px' }}>
-            <div className="node-number-badge">5</div>
-            <div className="node-icon icon-3d"><ShieldAlert size={32} /></div>
-            <div className="node-details">
-              {activeStep >= 7 ? (
-                <>
-                  <h4>Output Delivery</h4>
-                  <p>Approved DOCX Artifact</p>
-                </>
-              ) : (
-                <>
-                  <h4>Docker Sandbox</h4>
-                  <p>Zero-Network Code Execution</p>
-                </>
-              )}
-            </div>
-            <div className="node-tags">
-              <span>CodeAct</span>
-              <span>Artifact Gen</span>
-            </div>
-            {(activeStep === 5 || activeStep === 6 || activeStep === 7) && <div className="node-active-text">{EXPLANATIONS[activeStep]}</div>}
-            <div className="cyber-scanner"></div>
-          </div>
-
+          )}
+          
         </div>
-
       </div>
+      
     </div>
   );
 }
