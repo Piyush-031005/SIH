@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RichDashboard from './components/RichDashboard';
+import WorkbenchDashboard from './components/WorkbenchDashboard';
 import CoreFeatures from './components/CoreFeatures';
 import PrototypeView from './components/PrototypeView';
 
@@ -14,7 +14,7 @@ function App() {
           className={`nav-btn ${activeView === 'dashboard' ? 'active' : ''}`}
           onClick={() => setActiveView('dashboard')}
         >
-          Architecture Dashboard
+          Sovereign Workbench
         </button>
         <button 
           className={`nav-btn ${activeView === 'features' ? 'active' : ''}`}
@@ -30,7 +30,7 @@ function App() {
         </button>
       </div>
 
-      {activeView === 'dashboard' && <RichDashboard />}
+      {activeView === 'dashboard' && <WorkbenchDashboard />}
       {activeView === 'features' && <CoreFeatures />}
       {activeView === 'prototype' && <PrototypeView />}
     </div>
