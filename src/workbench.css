@@ -2,23 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  --bg-main: #111144; /* Deadly Depths */
-  --bg-panel: #181850; /* Slightly lighter than Deadly Depths, blending towards Deep Space Royal */
-  --bg-hover: #223382; /* Deep Space Royal */
-  --border-color: #223382; /* Deep Space Royal */
-  --text-primary: #F4F1EC; /* Luster White */
-  --text-secondary: #9BACD8; /* Aster Flower Blue */
+  --bg-main: #060B14;
+  --bg-panel: #111827;
+  --bg-hover: #1F2937;
+  --border-color: #1F2937;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
   
-  /* Brand Accents based on user request */
-  --brand-cream: #F4F1EC; /* Luster White */
-  --brand-brown: #F98513; /* Habanero (Orange) */
-  --brand-tan: #DAD1C8; /* Jodhpur Tan */
+  --brand-cream: #F3F4F6;
+  --brand-brown: #FBBF24; /* Yellow/Gold for accents */
+  --brand-tan: #D1D5DB;
   
-  /* Re-mapping old colors to the new professional palette so we don't break existing classes */
-  --brand-blue: var(--brand-cream); 
-  --brand-yellow: var(--brand-brown);
-  --brand-red: var(--brand-brown); 
-  --brand-green: var(--brand-cream);
+  --brand-blue: #3b82f6; 
+  --brand-yellow: #facc15;
+  --brand-red: #ef4444; 
+  --brand-green: #4ade80;
 }
 
 .wb-container {

@@ -228,8 +228,27 @@ export default function WorkbenchDashboard() {
             </div>
           </div>
           
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#111144', border: '1px solid var(--border-color)' }}>
-            <svg viewBox="-250 0 1450 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
+          <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+            <div style={{ flex: 1, background: 'var(--bg-panel)', padding: '16px', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Plant Status</div>
+              <div style={{ fontSize: '1.1rem', color: '#ef4444', fontWeight: 'bold' }}>CRITICAL ALERT</div>
+            </div>
+            <div style={{ flex: 1, background: 'var(--bg-panel)', padding: '16px', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Sensors Online</div>
+              <div style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: 'bold' }}>12,458</div>
+            </div>
+            <div style={{ flex: 1, background: 'var(--bg-panel)', padding: '16px', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Crude Throughput</div>
+              <div style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: 'bold' }}>320 TBD</div>
+            </div>
+            <div style={{ flex: 2, background: 'rgba(239, 68, 68, 0.05)', padding: '16px', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+              <div style={{ fontSize: '0.75rem', color: '#ef4444', marginBottom: '4px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>AI Diagnostic Focus</div>
+              <div style={{ fontSize: '1.1rem', color: '#ef4444', fontWeight: 'bold' }}>FCCU Reactor → Valve V-204 Stuck</div>
+            </div>
+          </div>
+
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#060B14', border: '1px solid var(--border-color)' }}>
+            <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
                   <path d="M 50 0 L 0 0 0 50" fill="none" stroke="var(--border-color)" opacity="0.3" strokeWidth="1"/>
@@ -247,11 +266,11 @@ export default function WorkbenchDashboard() {
               </defs>
 
               {/* Background Grids */}
-              <rect x="-250" y="0" width="1450" height="700" fill="url(#gridSmall)" />
-              <rect x="-250" y="0" width="1450" height="700" fill="url(#gridLarge)" />
+              <rect x="0" y="0" width="1200" height="700" fill="url(#gridSmall)" />
+              <rect x="0" y="0" width="1200" height="700" fill="url(#gridLarge)" />
 
               {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
-              <g stroke="var(--brand-brown)" strokeWidth="3" fill="none" opacity="0.4">
+              <g stroke="rgba(251, 191, 36, 0.3)" strokeWidth="3" fill="none" opacity="0.8">
                 {/* Horizontal main rack */}
                 <path d="M 50 350 L 1150 350" />
                 <path d="M 50 360 L 1150 360" />
@@ -272,12 +291,12 @@ export default function WorkbenchDashboard() {
                 <path d="M 800 450 L 1050 450" strokeWidth="2" />
                 
                 {/* Micro piping */}
-                <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.5" />
-                <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.5" />
+                <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
+                <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
               </g>
 
               {/* Functional Zones / Refinery Units */}
-              <g fill="#181850" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
+              <g fill="#111827" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
                 {/* Crude Tank Farm */}
                 <rect x="50" y="50" width="200" height="250" rx="4" />
                 
@@ -371,7 +390,7 @@ export default function WorkbenchDashboard() {
                 
                 {/* Warning Popup Overlay */}
                 <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="rgba(17, 17, 68, 0.95)" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <rect x="70" y="-85" width="180" height="65" fill="#111827" stroke="#ef4444" strokeWidth="1.5" rx="4" />
                 <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
                 <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
                 <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
@@ -384,31 +403,6 @@ export default function WorkbenchDashboard() {
                 <path d="M 800 350 L 1050 350" />
               </g>
             </svg>
-            
-            {/* Map Overlay Stats Panel */}
-            <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(17, 17, 68, 0.85)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: '6px', backdropFilter: 'blur(4px)'}}>
-              <div style={{color: 'var(--brand-cream)', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '12px', letterSpacing: '1px'}}>MRPL TELEMETRY</div>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '180px', fontSize: '0.8rem' }}>
-                  <span style={{color: 'var(--text-secondary)'}}>Overall Plant Status:</span>
-                  <span style={{color: '#ef4444', fontWeight: 'bold'}}>CRITICAL</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '180px', fontSize: '0.8rem' }}>
-                  <span style={{color: 'var(--text-secondary)'}}>Sensors Online:</span>
-                  <span style={{color: 'var(--brand-cream)'}}>12,458</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '180px', fontSize: '0.8rem' }}>
-                  <span style={{color: 'var(--text-secondary)'}}>Crude Throughput:</span>
-                  <span style={{color: 'var(--brand-cream)'}}>320 TBD</span>
-                </div>
-              </div>
-
-              <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid var(--border-color)' }}>
-                <div style={{color: '#ef4444', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase'}}>AI Diagnostic Focus:</div>
-                <div style={{color: 'var(--brand-cream)', fontSize: '0.85rem', marginTop: '4px'}}>FCCU Reactor → Valve V-204</div>
-              </div>
-            </div>
           </div>
         </div>
 
