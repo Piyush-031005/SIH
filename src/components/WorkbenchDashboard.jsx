@@ -228,14 +228,14 @@ export default function WorkbenchDashboard() {
             </div>
           </div>
           
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#040810', border: '1px solid #1A2235' }}>
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#111144', border: '1px solid var(--border-color)' }}>
             <svg viewBox="-250 0 1450 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
-                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(242, 232, 207, 0.08)" strokeWidth="1"/>
+                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="var(--border-color)" opacity="0.3" strokeWidth="1"/>
                 </pattern>
                 <pattern id="gridSmall" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(242, 232, 207, 0.03)" strokeWidth="0.5"/>
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--border-color)" opacity="0.15" strokeWidth="0.5"/>
                 </pattern>
                 <filter id="glowRed">
                   <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -251,7 +251,7 @@ export default function WorkbenchDashboard() {
               <rect x="-250" y="0" width="1450" height="700" fill="url(#gridLarge)" />
 
               {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
-              <g stroke="rgba(166, 124, 82, 0.4)" strokeWidth="3" fill="none">
+              <g stroke="var(--brand-brown)" strokeWidth="3" fill="none" opacity="0.4">
                 {/* Horizontal main rack */}
                 <path d="M 50 350 L 1150 350" />
                 <path d="M 50 360 L 1150 360" />
@@ -272,12 +272,12 @@ export default function WorkbenchDashboard() {
                 <path d="M 800 450 L 1050 450" strokeWidth="2" />
                 
                 {/* Micro piping */}
-                <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="rgba(242, 232, 207, 0.2)" />
-                <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="rgba(242, 232, 207, 0.2)" />
+                <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.5" />
+                <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.5" />
               </g>
 
               {/* Functional Zones / Refinery Units */}
-              <g fill="#0B101E" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
+              <g fill="#181850" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
                 {/* Crude Tank Farm */}
                 <rect x="50" y="50" width="200" height="250" rx="4" />
                 
@@ -300,11 +300,11 @@ export default function WorkbenchDashboard() {
                 <polygon points="50,450 250,450 280,550 250,650 50,650" />
                 
                 {/* Command Center */}
-                <rect x="350" y="450" width="150" height="150" rx="4" fill="rgba(242, 232, 207, 0.05)" />
+                <rect x="350" y="450" width="150" height="150" rx="4" fill="var(--bg-hover)" opacity="0.5" />
               </g>
 
               {/* Tank Farm Details (Top View Circles) */}
-              <g fill="rgba(242, 232, 207, 0.05)" stroke="var(--brand-cream)" strokeWidth="1">
+              <g fill="var(--border-color)" opacity="0.3" stroke="var(--brand-cream)" strokeWidth="1">
                 {/* Crude Tanks */}
                 <circle cx="100" cy="110" r="30" />
                 <circle cx="180" cy="110" r="30" />
@@ -371,7 +371,7 @@ export default function WorkbenchDashboard() {
                 
                 {/* Warning Popup Overlay */}
                 <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="rgba(11, 16, 30, 0.95)" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <rect x="70" y="-85" width="180" height="65" fill="rgba(17, 17, 68, 0.95)" stroke="#ef4444" strokeWidth="1.5" rx="4" />
                 <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
                 <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
                 <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
@@ -386,7 +386,7 @@ export default function WorkbenchDashboard() {
             </svg>
             
             {/* Map Overlay Stats Panel */}
-            <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(6, 11, 20, 0.85)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: '6px', backdropFilter: 'blur(4px)'}}>
+            <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(17, 17, 68, 0.85)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: '6px', backdropFilter: 'blur(4px)'}}>
               <div style={{color: 'var(--brand-cream)', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '12px', letterSpacing: '1px'}}>MRPL TELEMETRY</div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>

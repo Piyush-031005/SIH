@@ -2,15 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  --bg-main: #060B14; /* Extremely dark navy/black for background */
-  --bg-panel: #0B101E; /* Slightly lighter for panels */
-  --border-color: #1A2235;
-  --text-primary: #E2E8F0;
-  --text-secondary: #8B9BB4;
+  --bg-main: #111144; /* Deadly Depths */
+  --bg-panel: #181850; /* Slightly lighter than Deadly Depths, blending towards Deep Space Royal */
+  --bg-hover: #223382; /* Deep Space Royal */
+  --border-color: #223382; /* Deep Space Royal */
+  --text-primary: #F4F1EC; /* Luster White */
+  --text-secondary: #9BACD8; /* Aster Flower Blue */
   
   /* Brand Accents based on user request */
-  --brand-cream: #F2E8CF; /* Cream */
-  --brand-brown: #A67C52; /* Light Brown / Gold */
+  --brand-cream: #F4F1EC; /* Luster White */
+  --brand-brown: #F98513; /* Habanero (Orange) */
+  --brand-tan: #DAD1C8; /* Jodhpur Tan */
   
   /* Re-mapping old colors to the new professional palette so we don't break existing classes */
   --brand-blue: var(--brand-cream); 
