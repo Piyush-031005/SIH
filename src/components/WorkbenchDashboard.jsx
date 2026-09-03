@@ -223,7 +223,7 @@ export default function WorkbenchDashboard() {
             <h3 style={{ border: 'none', margin: 0, padding: 0 }}><Map size={20}/> MRPL Facility Top View</h3>
             <div style={{ display: 'flex', gap: '12px' }}>
               <span style={{ fontSize: '0.75rem', color: '#4ade80', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#4ade80'}}></div> Normal Operation</span>
-              <span style={{ fontSize: '0.75rem', color: '#facc15', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#facc15'}}></div> Warning</span>
+              <span style={{ fontSize: '0.75rem', color: '#F98513', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#F98513'}}></div> Warning</span>
               <span style={{ fontSize: '0.75rem', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#ef4444'}}></div> Critical Alert</span>
             </div>
           </div>
@@ -247,7 +247,7 @@ export default function WorkbenchDashboard() {
             </div>
           </div>
 
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#060B14', border: '1px solid var(--border-color)' }}>
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#111144', border: '1px solid var(--border-color)' }}>
             <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
@@ -263,6 +263,13 @@ export default function WorkbenchDashboard() {
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
+                <filter id="glowOrange">
+                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
               </defs>
 
               {/* Background Grids */}
@@ -270,11 +277,12 @@ export default function WorkbenchDashboard() {
               <rect x="0" y="0" width="1200" height="700" fill="url(#gridLarge)" />
 
               {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
-              <g stroke="rgba(251, 191, 36, 0.3)" strokeWidth="3" fill="none" opacity="0.8">
+              <g stroke="rgba(249, 133, 19, 0.3)" strokeWidth="3" fill="none" opacity="0.8">
                 {/* Horizontal main rack */}
                 <path d="M 50 350 L 1150 350" />
                 <path d="M 50 360 L 1150 360" />
                 <path d="M 50 340 L 1150 340" />
+                <path d="M 50 370 L 1150 370" strokeWidth="1.5" stroke="var(--text-secondary)" opacity="0.4" />
                 
                 {/* Vertical racks branching off */}
                 <path d="M 300 100 L 300 600" />
@@ -293,15 +301,19 @@ export default function WorkbenchDashboard() {
                 {/* Micro piping */}
                 <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
                 <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
+                <path d="M 850 300 L 850 400 M 900 300 L 900 400 M 950 300 L 950 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
               </g>
 
               {/* Functional Zones / Refinery Units */}
-              <g fill="#111827" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
+              <g fill="#181850" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
                 {/* Crude Tank Farm */}
                 <rect x="50" y="50" width="200" height="250" rx="4" />
                 
                 {/* CDU / VDU (Crude/Vacuum Distillation) */}
                 <polygon points="350,80 500,80 520,130 500,180 350,180 330,130" />
+                
+                {/* Heat Exchanger Train (New) */}
+                <rect x="350" y="200" width="150" height="30" rx="2" />
                 
                 {/* FCCU (Fluid Catalytic Cracking Unit) */}
                 <polygon points="600,60 750,60 780,150 750,240 600,240 570,150" />
@@ -309,11 +321,17 @@ export default function WorkbenchDashboard() {
                 {/* Hydrocracker / DHDT */}
                 <rect x="850" y="80" width="200" height="150" rx="4" />
                 
+                {/* Cooling Tower (New) */}
+                <rect x="850" y="270" width="250" height="50" rx="4" />
+                
                 {/* SRU (Sulfur Recovery Unit) */}
                 <polygon points="600,450 750,450 750,600 600,600 550,525" />
                 
                 {/* Product Storage */}
-                <rect x="850" y="450" width="250" height="200" rx="4" />
+                <rect x="850" y="450" width="150" height="200" rx="4" />
+                
+                {/* Truck Loading Gantry (New) */}
+                <rect x="1020" y="450" width="120" height="200" rx="4" fill="rgba(34, 51, 130, 0.4)" stroke="var(--border-color)" />
                 
                 {/* Utilities / Power */}
                 <polygon points="50,450 250,450 280,550 250,650 50,650" />
@@ -330,31 +348,53 @@ export default function WorkbenchDashboard() {
                 <circle cx="100" cy="190" r="30" />
                 <circle cx="180" cy="190" r="30" />
                 {/* Product Tanks */}
-                <circle cx="910" cy="510" r="25" />
-                <circle cx="980" cy="510" r="25" />
-                <circle cx="1050" cy="510" r="25" />
-                <circle cx="910" cy="580" r="25" />
-                <circle cx="980" cy="580" r="25" />
-                <circle cx="1050" cy="580" r="25" />
+                <circle cx="890" cy="490" r="25" />
+                <circle cx="960" cy="490" r="25" />
+                <circle cx="890" cy="550" r="25" />
+                <circle cx="960" cy="550" r="25" />
+                <circle cx="890" cy="610" r="25" />
+                <circle cx="960" cy="610" r="25" />
+              </g>
+              
+              {/* Cooling Tower Fans */}
+              <g fill="var(--border-color)" opacity="0.5" stroke="var(--brand-cream)" strokeWidth="0.5">
+                <circle cx="880" cy="295" r="18" />
+                <circle cx="930" cy="295" r="18" />
+                <circle cx="980" cy="295" r="18" />
+                <circle cx="1030" cy="295" r="18" />
+                <circle cx="1080" cy="295" r="18" />
+              </g>
+
+              {/* Truck Loading Details */}
+              <g fill="#F98513" opacity="0.7">
+                {/* Trucks */}
+                <rect x="1040" y="470" width="20" height="45" rx="3" />
+                <rect x="1090" y="470" width="20" height="45" rx="3" />
+                <rect x="1040" y="540" width="20" height="45" rx="3" />
+                <rect x="1090" y="580" width="20" height="45" rx="3" />
               </g>
 
               {/* Labels & Structural Details */}
               <g fill="var(--brand-cream)" fontFamily="Inter" fontSize="12" fontWeight="700" letterSpacing="1.5">
                 <text x="150" y="40" textAnchor="middle">CRUDE TANK FARM</text>
                 <text x="425" y="135" textAnchor="middle">CDU / VDU</text>
+                <text x="425" y="220" textAnchor="middle" fontSize="10" opacity="0.8">HEAT EXCHANGERS</text>
                 <text x="675" y="155" textAnchor="middle" fontSize="16">FCCU</text>
                 <text x="950" y="70" textAnchor="middle">HYDROCRACKER</text>
+                <text x="975" y="260" textAnchor="middle">COOLING TOWERS</text>
                 <text x="675" y="440" textAnchor="middle">SULFUR RECOVERY</text>
-                <text x="975" y="435" textAnchor="middle">PRODUCT STORAGE</text>
+                <text x="925" y="435" textAnchor="middle">PRODUCT STORAGE</text>
+                <text x="1080" y="435" textAnchor="middle">TRUCK BAY</text>
                 <text x="150" y="440" textAnchor="middle">CAPTIVE POWER</text>
                 <text x="425" y="525" textAnchor="middle">CONTROL ROOM</text>
               </g>
 
-              {/* Flare Stack */}
+              {/* Enhanced Flare Stack */}
               <g transform="translate(150, 310)">
-                <circle cx="0" cy="0" r="10" fill="none" stroke="#facc15" strokeWidth="2" />
-                <circle cx="0" cy="0" r="4" fill="#ef4444" className="hazard-ping" />
-                <text x="0" y="-18" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
+                <path d="M -15 0 L 15 0 L 10 -40 L -10 -40 Z" fill="var(--border-color)" opacity="0.6" stroke="#F98513" strokeWidth="1" />
+                <circle cx="0" cy="-40" r="10" fill="none" stroke="#F98513" strokeWidth="2" filter="url(#glowOrange)" />
+                <circle cx="0" cy="-40" r="4" fill="#ef4444" className="hazard-ping" />
+                <text x="0" y="-55" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
               </g>
 
               {/* 🟢 Status Signals: NORMAL (Green) */}
@@ -366,21 +406,24 @@ export default function WorkbenchDashboard() {
                 <circle cx="450" cy="100" r="4" fill="#4ade80" />
                 <circle cx="880" cy="120" r="4" fill="#4ade80" />
                 <circle cx="1020" cy="180" r="4" fill="#4ade80" />
-                <circle cx="910" cy="510" r="4" fill="#4ade80" />
+                <circle cx="890" cy="490" r="4" fill="#4ade80" />
+                <circle cx="960" cy="550" r="4" fill="#4ade80" />
                 <circle cx="120" cy="550" r="4" fill="#4ade80" />
                 <circle cx="200" cy="600" r="4" fill="#4ade80" />
                 <circle cx="425" cy="550" r="4" fill="#4ade80" />
                 <circle cx="630" cy="550" r="4" fill="#4ade80" />
+                <circle cx="880" cy="295" r="4" fill="#4ade80" />
+                <circle cx="1080" cy="295" r="4" fill="#4ade80" />
               </g>
 
-              {/* 🟡 Status Signals: WARNING (Yellow) */}
+              {/* 🟡 Status Signals: WARNING (Yellow/Orange) */}
               <g>
-                <circle cx="180" cy="190" r="4" fill="#facc15" />
-                <line x1="180" y1="190" x2="220" y2="230" stroke="#facc15" strokeWidth="1" />
-                <text x="225" y="240" fill="#facc15" fontSize="10">LVL 95%</text>
+                <circle cx="180" cy="190" r="4" fill="#F98513" />
+                <line x1="180" y1="190" x2="220" y2="230" stroke="#F98513" strokeWidth="1" />
+                <text x="225" y="240" fill="#F98513" fontSize="10">LVL 95%</text>
                 
-                <circle cx="700" cy="500" r="4" fill="#facc15" />
-                <text x="710" y="505" fill="#facc15" fontSize="10">H2S SPIKE</text>
+                <circle cx="700" cy="500" r="4" fill="#F98513" />
+                <text x="710" y="505" fill="#F98513" fontSize="10">H2S SPIKE</text>
               </g>
 
               {/* 🔴 Status Signals: CRITICAL ALERT (Red) inside FCCU */}
@@ -390,7 +433,7 @@ export default function WorkbenchDashboard() {
                 
                 {/* Warning Popup Overlay */}
                 <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="#111827" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <rect x="70" y="-85" width="180" height="65" fill="#181850" stroke="#ef4444" strokeWidth="1.5" rx="4" />
                 <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
                 <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
                 <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
@@ -401,6 +444,8 @@ export default function WorkbenchDashboard() {
                 <path d="M 300 200 L 300 350 L 550 350 L 550 200" />
                 <path d="M 550 350 L 800 350 L 800 250" />
                 <path d="M 800 350 L 1050 350" />
+                <path d="M 150 310 L 150 350 L 50 350" />
+                <path d="M 1050 450 L 1050 470" />
               </g>
             </svg>
           </div>
