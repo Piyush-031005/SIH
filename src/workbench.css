@@ -2,19 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  --bg-main: #0B0F19; /* Deep dark navy */
-  --bg-panel: #131B2F; /* Slightly lighter navy for panels */
-  --bg-hover: #1A243D;
-  --border-color: #1E293B;
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
+  --bg-main: #060B14; /* Extremely dark navy/black for background */
+  --bg-panel: #0B101E; /* Slightly lighter for panels */
+  --border-color: #1A2235;
+  --text-primary: #E2E8F0;
+  --text-secondary: #8B9BB4;
   
-  /* Brand Accents based on images */
-  --brand-blue: #014BAA; /* Royal Blue */
-  --brand-blue-hover: #023d8a;
-  --brand-yellow: #FACC15; /* Yellow */
-  --brand-red: #B81104; /* Milano Red */
-  --brand-green: #556B2F; /* Dark Olive Green */
+  /* Brand Accents based on user request */
+  --brand-cream: #F2E8CF; /* Cream */
+  --brand-brown: #A67C52; /* Light Brown / Gold */
+  
+  /* Re-mapping old colors to the new professional palette so we don't break existing classes */
+  --brand-blue: var(--brand-cream); 
+  --brand-yellow: var(--brand-brown);
+  --brand-red: var(--brand-brown); 
+  --brand-green: var(--brand-cream);
 }
 
 .wb-container {
@@ -305,6 +307,21 @@
 .hazard-ping {
   animation: pingHazard 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
   transform-origin: center;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.rotating-ring {
+  transform-origin: 400px 200px;
+  animation: rotateRing 4s linear infinite;
+}
+@keyframes streamFlow {
+  to { stroke-dashoffset: -30; }
+}
+.data-stream {
+  animation: streamFlow 1.5s linear infinite;
 }
 
 @media (max-width: 1200px) {

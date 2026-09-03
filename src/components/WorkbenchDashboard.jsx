@@ -220,51 +220,80 @@ export default function WorkbenchDashboard() {
         {/* 9. Facility Top View Map */}
         <div className="wb-panel glass-panel map-panel">
           <h3><Map size={20}/> Facility Top View</h3>
-          <div className="factory-map-container">
-            <svg viewBox="0 0 500 220" className="factory-svg">
-              {/* Connections */}
-              <path d="M 140 70 L 180 70" stroke="#334155" strokeWidth="3" />
-              <path d="M 320 80 L 360 80" stroke="#334155" strokeWidth="3" />
-              <path d="M 90 110 L 90 140" stroke="#334155" strokeWidth="3" />
-              <path d="M 250 140 L 250 160" stroke="#334155" strokeWidth="3" />
-              <path d="M 410 140 L 410 160" stroke="#334155" strokeWidth="3" />
-
-              {/* Zones */}
-              <g className="map-zone safe-zone">
-                <rect x="40" y="30" width="100" height="80" rx="6" />
-                <text x="90" y="70" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Storage Unit A</text>
-                <circle cx="120" cy="45" r="4" fill="#A3E635" />
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '4px', backgroundColor: '#0B101E' }}>
+            <svg viewBox="0 0 800 400" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', opacity: 0.85 }}>
+              {/* Complex background grid/roads */}
+              <g stroke="var(--brand-cream)" strokeWidth="1" fill="none" opacity="0.3">
+                {/* Random intersecting paths mimicking roads/pipes */}
+                <path d="M-50 50 Q 200 100 400 50 T 850 150" />
+                <path d="M-50 150 Q 300 300 500 200 T 850 350" />
+                <path d="M 100 -50 Q 150 200 100 450" />
+                <path d="M 300 -50 Q 250 250 400 450" />
+                <path d="M 600 -50 Q 550 200 700 450" />
+                <path d="M 0 350 L 800 50" />
+                <path d="M 0 50 L 800 350" />
+                
+                {/* Secondary finer grid */}
+                <path d="M 50 0 L 50 400 M 150 0 L 150 400 M 250 0 L 250 400 M 350 0 L 350 400 M 450 0 L 450 400 M 550 0 L 550 400 M 650 0 L 650 400 M 750 0 L 750 400" strokeWidth="0.5" opacity="0.5"/>
+                <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150 M 0 200 L 800 200 M 0 250 L 800 250 M 0 300 L 800 300 M 0 350 L 800 350" strokeWidth="0.5" opacity="0.5"/>
               </g>
 
-              <g className="map-zone hazard-zone">
-                <rect x="180" y="30" width="140" height="110" rx="6" />
-                <text x="250" y="80" textAnchor="middle" fill="#f87171" fontSize="14" fontWeight="700">Pump P101</text>
-                <text x="250" y="100" textAnchor="middle" fill="#fca5a5" fontSize="10">82°C Anomaly</text>
-                <circle cx="250" cy="50" r="8" fill="#f87171" className="hazard-ping" />
+              {/* Main arterial pipes/roads */}
+              <g stroke="var(--brand-brown)" strokeWidth="3" fill="none" opacity="0.8">
+                <path d="M 200 100 L 400 200 L 600 150" />
+                <path d="M 400 200 L 400 350 L 550 350" />
+                <path d="M 200 100 L 100 250 L 250 350 L 400 350" />
               </g>
 
-              <g className="map-zone safe-zone">
-                <rect x="360" y="30" width="100" height="110" rx="6" />
-                <text x="410" y="90" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Refining B</text>
-                <circle cx="440" cy="45" r="4" fill="#A3E635" />
+              {/* Functional Zones / Buildings */}
+              <g fill="var(--bg-panel)" stroke="var(--brand-brown)" strokeWidth="1.5">
+                <polygon points="180,80 220,90 230,120 170,110" />
+                <polygon points="380,180 440,190 420,230 370,210" />
+                <polygon points="580,130 630,120 640,160 590,170" />
+                <polygon points="90,240 120,230 140,270 100,280" />
+                <polygon points="230,340 270,330 280,370 240,380" />
+                <polygon points="530,340 570,330 580,370 540,380" />
               </g>
 
-              <g className="map-zone safe-zone">
-                <rect x="40" y="140" width="100" height="60" rx="6" />
-                <text x="90" y="175" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Control Rm</text>
+              {/* Highlighted Data Nodes */}
+              <g>
+                {/* Node 1 - Normal */}
+                <circle cx="200" cy="100" r="6" fill="var(--brand-cream)" />
+                <text x="200" y="70" textAnchor="middle" fill="var(--brand-cream)" fontSize="12" fontWeight="600" letterSpacing="1">UNIT ALPHA</text>
+
+                {/* Node 2 - Warning / Anomaly */}
+                <circle cx="400" cy="200" r="8" fill="var(--brand-brown)" />
+                <circle cx="400" cy="200" r="14" fill="none" stroke="var(--brand-brown)" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
+                <text x="400" y="170" textAnchor="middle" fill="var(--brand-brown)" fontSize="14" fontWeight="700" letterSpacing="1">PUMP P101</text>
+                <text x="400" y="225" textAnchor="middle" fill="var(--brand-cream)" fontSize="10">TEMP ANOMALY DETECTED</text>
+                
+                {/* Node 3 - Normal */}
+                <circle cx="600" cy="150" r="6" fill="var(--brand-cream)" />
+                <text x="600" y="120" textAnchor="middle" fill="var(--brand-cream)" fontSize="12" fontWeight="600" letterSpacing="1">REFINERY B</text>
+
+                {/* Node 4 - Normal */}
+                <circle cx="100" cy="250" r="5" fill="var(--brand-cream)" />
+                <text x="70" y="240" textAnchor="end" fill="var(--brand-cream)" fontSize="10" letterSpacing="1">STORAGE</text>
+
+                {/* Node 5 - Normal */}
+                <circle cx="550" cy="350" r="5" fill="var(--brand-cream)" />
+                <text x="580" y="360" textAnchor="start" fill="var(--brand-cream)" fontSize="10" letterSpacing="1">CONTROL</text>
               </g>
 
-              <g className="map-zone warning-zone">
-                <rect x="180" y="160" width="140" height="40" rx="6" />
-                <text x="250" y="185" textAnchor="middle" fill="#FACC15" fontSize="12" fontWeight="600">Pipeline Alpha</text>
-                <circle cx="300" cy="175" r="4" fill="#FACC15" />
-              </g>
-
-              <g className="map-zone safe-zone">
-                <rect x="360" y="160" width="100" height="40" rx="6" />
-                <text x="410" y="185" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Grid C</text>
+              {/* Data streams (animated dashes) */}
+              <g stroke="var(--brand-cream)" strokeWidth="1.5" fill="none" strokeDasharray="5 10" className="data-stream">
+                <path d="M 200 100 L 400 200" />
+                <path d="M 600 150 L 400 200" />
+                <path d="M 400 350 L 400 200" />
               </g>
             </svg>
+            
+            {/* Map Overlay Stats */}
+            <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(11, 16, 30, 0.8)', padding: '12px', border: '1px solid var(--brand-brown)', borderRadius: '4px'}}>
+              <div style={{color: 'var(--brand-cream)', fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '4px'}}>LIVE FEED</div>
+              <div style={{color: 'var(--text-secondary)', fontSize: '0.75rem'}}>Sector 4 Active</div>
+              <div style={{color: 'var(--brand-brown)', fontSize: '0.75rem', marginTop: '4px', fontWeight: 'bold'}}>1 Anomaly Detected</div>
+            </div>
           </div>
         </div>
 
