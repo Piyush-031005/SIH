@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RichDashboard from './components/RichDashboard';
 import CoreFeatures from './components/CoreFeatures';
+import PrototypeView from './components/PrototypeView';
 
 function App() {
   const [activeView, setActiveView] = useState('dashboard');
@@ -21,9 +22,17 @@ function App() {
         >
           System Capabilities
         </button>
+        <button 
+          className={`nav-btn ${activeView === 'prototype' ? 'active' : ''}`}
+          onClick={() => setActiveView('prototype')}
+        >
+          UI Prototype
+        </button>
       </div>
 
-      {activeView === 'dashboard' ? <RichDashboard /> : <CoreFeatures />}
+      {activeView === 'dashboard' && <RichDashboard />}
+      {activeView === 'features' && <CoreFeatures />}
+      {activeView === 'prototype' && <PrototypeView />}
     </div>
   );
 }
