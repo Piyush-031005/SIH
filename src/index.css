@@ -6,8 +6,8 @@
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #323639;
-  color: #F4F1EC;
+  background-color: #FBF3F0;
+  color: #014BAA;
   overflow: hidden;
 }
 
@@ -51,18 +51,18 @@ body {
   align-items: center;
   font-weight: 900;
   font-size: 0.85rem;
-  color: white;
+  color: #014BAA;
   box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
 }
 
 .rd-brand h2 {
   font-size: 1.15rem;
-  color: #F4F1EC;
+  color: #014BAA;
 }
 
 .rd-brand p {
   font-size: 0.75rem;
-  color: #223382;
+  color: #014BAA;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -71,7 +71,7 @@ body {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #223382;
+  color: #014BAA;
   margin-bottom: 1.5rem;
 }
 
@@ -112,31 +112,31 @@ body {
 
 .rd-step.past .step-indicator {
   background: rgba(16, 185, 129, 0.2);
-  border-color: #10b981;
-  color: #10b981;
+  border-color: #014BAA;
+  color: #014BAA;
 }
 
 .rd-step.active .step-indicator {
   background: rgba(234, 88, 12, 0.2);
-  border-color: #F98513;
-  color: #F98513;
+  border-color: #014BAA;
+  color: #014BAA;
   box-shadow: 0 0 15px rgba(234, 88, 12, 0.5);
 }
 
 .step-text strong {
   display: block;
   font-size: 1rem;
-  color: #F4F1EC;
+  color: #014BAA;
 }
 
 .step-text span {
   display: block;
   font-size: 0.8rem;
-  color: #223382;
+  color: #014BAA;
 }
 
 .rd-step.active .step-text strong {
-  color: #F98513;
+  color: #014BAA;
 }
 
 .rd-proof-box {
@@ -152,11 +152,11 @@ body {
   align-items: center;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #014BAA;
   margin-bottom: 0.85rem;
 }
 .proof-item:last-child { margin-bottom: 0; }
-.proof-item svg { color: #10b981; }
+.proof-item svg { color: #014BAA; }
 
 /* --- MAIN CANVAS & 3D ENVIRONMENT --- */
 .rd-canvas {
@@ -189,7 +189,7 @@ body {
   z-index: 100;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #223382;
+  color: #014BAA;
   text-transform: uppercase;
   letter-spacing: 3px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -233,7 +233,7 @@ body {
 }
 
 .arch-node.pulse-3d {
-  border-color: #9BACD8;
+  border-color: #014BAA;
   border-width: 2px;
   /* Levitates up when active */
   transform: translateZ(80px) scale(1.05);
@@ -252,7 +252,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #223382;
+  color: #014BAA;
   box-shadow: 
     inset 2px 2px 5px rgba(255,255,255,0.05),
     inset -2px -2px 5px rgba(0,0,0,0.5),
@@ -261,7 +261,7 @@ body {
 
 .pulse-3d .icon-3d {
   background: linear-gradient(135deg, #9BACD8, #9BACD8);
-  color: white;
+  color: #014BAA;
   box-shadow: 
     inset 2px 2px 5px rgba(255,255,255,0.3),
     5px 5px 20px rgba(59, 130, 246, 0.5);
@@ -269,12 +269,12 @@ body {
 
 .node-details h4 {
   font-size: 1.15rem;
-  color: #F4F1EC;
+  color: #014BAA;
   margin-bottom: 0.25rem;
 }
 .node-details p {
   font-size: 0.85rem;
-  color: #223382;
+  color: #014BAA;
 }
 
 .node-tags {
@@ -289,7 +289,7 @@ body {
 .node-tags span {
   font-size: 0.75rem;
   background: #181850;
-  color: #cbd5e1;
+  color: #014BAA;
   padding: 4px 8px;
   border-radius: 4px;
   border: 1px solid #223382;
@@ -335,7 +335,7 @@ body {
 .engine-title {
   font-size: 1rem;
   text-transform: uppercase;
-  color: #223382;
+  color: #014BAA;
   letter-spacing: 2px;
   margin-bottom: 2rem;
   text-align: center;
@@ -359,7 +359,7 @@ body {
 
 .gear-3d {
   border-width: 6px;
-  border-color: #223382;
+  border-color: #014BAA;
   box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 5px 10px rgba(0,0,0,0.5);
   width: 48px; height: 48px;
   left: 30px; bottom: -10px;
@@ -381,7 +381,7 @@ body {
 
 .rd-piston-label {
   font-size: 0.75rem;
-  color: #F4F1EC;
+  color: #014BAA;
   text-transform: uppercase;
   margin-bottom: 4rem;
   text-align: center;
@@ -452,7 +452,7 @@ body {
   width: 36px;
   height: 36px;
   background: #F98513;
-  color: white;
+  color: #014BAA;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -473,7 +473,7 @@ body {
   transform: translateX(-50%) translateZ(80px);
   width: 280px;
   background: rgba(234, 88, 12, 0.95);
-  color: white;
+  color: #014BAA;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   text-align: center;
