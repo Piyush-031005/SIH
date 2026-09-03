@@ -205,7 +205,7 @@ body {
   z-index: 10;
 }
 
-.3d-container {
+.container-3d {
   perspective: 2500px;
   transform-style: preserve-3d;
 }

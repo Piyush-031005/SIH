@@ -84,7 +84,7 @@ export default function RichDashboard() {
         <h2 className="canvas-title">BACKEND ARCHITECTURE & ENGINE EXECUTION</h2>
 
         {/* 3D Isometric container for the whole diagram */}
-        <div className="architecture-diagram 3d-container">
+        <div className="architecture-diagram container-3d">
           
           {/* SVG Connections with Animated Data Streams */}
           <svg className="rd-svg-lines" preserveAspectRatio="none">
