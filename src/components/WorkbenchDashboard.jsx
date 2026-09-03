@@ -217,161 +217,196 @@ export default function WorkbenchDashboard() {
           </div>
         </div>
 
-        {/* 9. Facility Top View Map */}
+        {/* 9. Facility Top View Map (MRPL-Style Complex Refinery) */}
         <div className="wb-panel glass-panel map-panel">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
-            <h3 style={{ border: 'none', margin: 0, padding: 0 }}><Map size={20}/> Facility Top View</h3>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <span style={{ fontSize: '0.75rem', color: 'var(--brand-cream)', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--brand-cream)'}}></div> Normal</span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--brand-brown)', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--brand-brown)'}}></div> Alert</span>
+            <h3 style={{ border: 'none', margin: 0, padding: 0 }}><Map size={20}/> MRPL Facility Top View</h3>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <span style={{ fontSize: '0.75rem', color: '#4ade80', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#4ade80'}}></div> Normal Operation</span>
+              <span style={{ fontSize: '0.75rem', color: '#facc15', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#facc15'}}></div> Warning</span>
+              <span style={{ fontSize: '0.75rem', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#ef4444'}}></div> Critical Alert</span>
             </div>
           </div>
           
           <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#040810', border: '1px solid #1A2235' }}>
-            <svg viewBox="0 0 1000 500" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
+            <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(242, 232, 207, 0.05)" strokeWidth="1"/>
+                <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
+                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(242, 232, 207, 0.08)" strokeWidth="1"/>
                 </pattern>
-                <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(242, 232, 207, 0.02)" strokeWidth="0.5"/>
+                <pattern id="gridSmall" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(242, 232, 207, 0.03)" strokeWidth="0.5"/>
                 </pattern>
+                <filter id="glowRed">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
               </defs>
 
               {/* Background Grids */}
-              <rect width="100%" height="100%" fill="url(#smallGrid)" />
-              <rect width="100%" height="100%" fill="url(#grid)" />
+              <rect width="100%" height="100%" fill="url(#gridSmall)" />
+              <rect width="100%" height="100%" fill="url(#gridLarge)" />
 
-              {/* Complex Background Infrastructure (Roads/Pipes) */}
-              <g stroke="rgba(242, 232, 207, 0.15)" strokeWidth="1.5" fill="none">
-                <path d="M -50 100 L 300 100 L 400 250 L 800 250 L 1050 100" />
-                <path d="M 150 -50 L 150 150 L 250 250 L 250 550" />
-                <path d="M 450 550 L 450 400 L 600 250 L 600 -50" />
-                <path d="M 850 550 L 850 350 L 700 250 L 700 -50" />
-                <path d="M -50 350 L 200 350 L 300 450 L 1050 450" />
+              {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
+              <g stroke="rgba(166, 124, 82, 0.4)" strokeWidth="3" fill="none">
+                {/* Horizontal main rack */}
+                <path d="M 50 350 L 1150 350" />
+                <path d="M 50 360 L 1150 360" />
+                <path d="M 50 340 L 1150 340" />
                 
-                {/* Diagonal secondary paths */}
-                <path d="M 0 0 L 1000 500" strokeWidth="0.5" strokeDasharray="4 4" />
-                <path d="M 0 500 L 1000 0" strokeWidth="0.5" strokeDasharray="4 4" />
+                {/* Vertical racks branching off */}
+                <path d="M 300 100 L 300 600" />
+                <path d="M 310 100 L 310 600" />
+                <path d="M 550 50 L 550 650" />
+                <path d="M 560 50 L 560 650" />
+                <path d="M 800 150 L 800 550" />
+                
+                {/* Interconnecting pipes */}
+                <path d="M 150 150 L 300 150" strokeWidth="2" />
+                <path d="M 310 200 L 550 200" strokeWidth="2" />
+                <path d="M 560 250 L 800 250" strokeWidth="2" />
+                <path d="M 560 500 L 800 500" strokeWidth="2" />
+                <path d="M 800 450 L 1050 450" strokeWidth="2" />
+                
+                {/* Micro piping */}
+                <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="rgba(242, 232, 207, 0.2)" />
+                <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="rgba(242, 232, 207, 0.2)" />
               </g>
 
-              {/* Complex Polygonal Rooms / Zones (Like Among Us Map) */}
-              <g fill="#0B101E" stroke="var(--brand-cream)" strokeWidth="2" opacity="0.9">
-                {/* Zone 1: Storage / Receiving */}
-                <polygon points="50,150 200,150 250,200 200,300 50,300 20,225" />
+              {/* Functional Zones / Refinery Units */}
+              <g fill="#0B101E" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
+                {/* Crude Tank Farm */}
+                <rect x="50" y="50" width="200" height="250" rx="4" />
                 
-                {/* Zone 2: Main Processing (Octagon-ish) */}
-                <polygon points="350,100 550,100 650,200 650,350 550,450 350,450 250,350 250,200" />
+                {/* CDU / VDU (Crude/Vacuum Distillation) */}
+                <polygon points="350,80 500,80 520,130 500,180 350,180 330,130" />
                 
-                {/* Zone 3: Control & Admin */}
-                <polygon points="700,50 900,50 950,150 900,250 700,250 650,150" />
+                {/* FCCU (Fluid Catalytic Cracking Unit) */}
+                <polygon points="600,60 750,60 780,150 750,240 600,240 570,150" />
                 
-                {/* Zone 4: Power / Utility */}
-                <polygon points="750,300 950,300 950,450 700,450 680,375" />
+                {/* Hydrocracker / DHDT */}
+                <rect x="850" y="80" width="200" height="150" rx="4" />
+                
+                {/* SRU (Sulfur Recovery Unit) */}
+                <polygon points="600,450 750,450 750,600 600,600 550,525" />
+                
+                {/* Product Storage */}
+                <rect x="850" y="450" width="250" height="200" rx="4" />
+                
+                {/* Utilities / Power */}
+                <polygon points="50,450 250,450 280,550 250,650 50,650" />
+                
+                {/* Command Center */}
+                <rect x="350" y="450" width="150" height="150" rx="4" fill="rgba(242, 232, 207, 0.05)" />
               </g>
 
-              {/* Corridors / Connecting Tubes */}
-              <g stroke="rgba(166, 124, 82, 0.6)" strokeWidth="6" fill="none">
-                <path d="M 225 225 L 300 225" />
-                <path d="M 600 175 L 675 175" />
-                <path d="M 600 375 L 725 375" />
+              {/* Tank Farm Details (Top View Circles) */}
+              <g fill="rgba(242, 232, 207, 0.05)" stroke="var(--brand-cream)" strokeWidth="1">
+                {/* Crude Tanks */}
+                <circle cx="100" cy="110" r="30" />
+                <circle cx="180" cy="110" r="30" />
+                <circle cx="100" cy="190" r="30" />
+                <circle cx="180" cy="190" r="30" />
+                {/* Product Tanks */}
+                <circle cx="910" cy="510" r="25" />
+                <circle cx="980" cy="510" r="25" />
+                <circle cx="1050" cy="510" r="25" />
+                <circle cx="910" cy="580" r="25" />
+                <circle cx="980" cy="580" r="25" />
+                <circle cx="1050" cy="580" r="25" />
               </g>
 
-              {/* Animated Data Flows inside corridors */}
-              <g stroke="var(--brand-cream)" strokeWidth="2" fill="none" strokeDasharray="5 10" className="data-stream">
-                <path d="M 225 225 L 300 225" />
-                <path d="M 675 175 L 600 175" />
-                <path d="M 725 375 L 600 375" />
+              {/* Labels & Structural Details */}
+              <g fill="var(--brand-cream)" fontFamily="Inter" fontSize="12" fontWeight="700" letterSpacing="1.5">
+                <text x="150" y="40" textAnchor="middle">CRUDE TANK FARM</text>
+                <text x="425" y="135" textAnchor="middle">CDU / VDU</text>
+                <text x="675" y="155" textAnchor="middle" fontSize="16">FCCU</text>
+                <text x="950" y="70" textAnchor="middle">HYDROCRACKER</text>
+                <text x="675" y="440" textAnchor="middle">SULFUR RECOVERY</text>
+                <text x="975" y="435" textAnchor="middle">PRODUCT STORAGE</text>
+                <text x="150" y="440" textAnchor="middle">CAPTIVE POWER</text>
+                <text x="425" y="525" textAnchor="middle">CONTROL ROOM</text>
               </g>
 
-              {/* Interior Details & Room Labels */}
-              <g fill="var(--brand-cream)" fontFamily="Inter">
-                {/* Storage */}
-                <text x="135" y="210" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="2">TANK FARM</text>
-                <text x="135" y="230" textAnchor="middle" fontSize="10" opacity="0.7">CAPACITY: 84%</text>
-                <rect x="70" y="240" width="40" height="40" fill="none" stroke="rgba(242, 232, 207, 0.3)" />
-                <rect x="120" y="240" width="40" height="40" fill="none" stroke="rgba(242, 232, 207, 0.3)" />
-                <rect x="170" y="240" width="40" height="40" fill="none" stroke="rgba(242, 232, 207, 0.3)" />
-                <circle cx="90" cy="260" r="10" fill="rgba(242, 232, 207, 0.2)" />
-                <circle cx="140" cy="260" r="10" fill="rgba(242, 232, 207, 0.2)" />
-                <circle cx="190" cy="260" r="10" fill="rgba(242, 232, 207, 0.2)" />
+              {/* Flare Stack */}
+              <g transform="translate(100, 320)">
+                <circle cx="0" cy="0" r="10" fill="none" stroke="#facc15" strokeWidth="2" />
+                <circle cx="0" cy="0" r="4" fill="#ef4444" className="hazard-ping" />
+                <text x="0" y="-15" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
+              </g>
 
-                {/* Main Processing */}
-                <text x="450" y="250" textAnchor="middle" fontSize="20" fontWeight="800" letterSpacing="3">CRACKING UNIT</text>
+              {/* 🟢 Status Signals: NORMAL (Green) */}
+              <g>
+                <circle cx="100" cy="110" r="4" fill="#4ade80" />
+                <circle cx="180" cy="110" r="4" fill="#4ade80" />
+                <circle cx="100" cy="190" r="4" fill="#4ade80" />
+                <circle cx="390" cy="150" r="4" fill="#4ade80" />
+                <circle cx="450" cy="100" r="4" fill="#4ade80" />
+                <circle cx="880" cy="120" r="4" fill="#4ade80" />
+                <circle cx="1020" cy="180" r="4" fill="#4ade80" />
+                <circle cx="910" cy="510" r="4" fill="#4ade80" />
+                <circle cx="120" cy="550" r="4" fill="#4ade80" />
+                <circle cx="200" cy="600" r="4" fill="#4ade80" />
+                <circle cx="425" cy="550" r="4" fill="#4ade80" />
+                <circle cx="630" cy="550" r="4" fill="#4ade80" />
+              </g>
+
+              {/* 🟡 Status Signals: WARNING (Yellow) */}
+              <g>
+                <circle cx="180" cy="190" r="4" fill="#facc15" />
+                <line x1="180" y1="190" x2="220" y2="230" stroke="#facc15" strokeWidth="1" />
+                <text x="225" y="240" fill="#facc15" fontSize="10">LVL 95%</text>
                 
-                {/* Control Admin */}
-                <text x="815" y="140" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="2">COMMAND CENTER</text>
-                <text x="815" y="160" textAnchor="middle" fontSize="10" opacity="0.7">PERSONNEL: 12</text>
-                
-                {/* Power */}
-                <text x="840" y="370" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="2">GENERATOR</text>
+                <circle cx="700" cy="500" r="4" fill="#facc15" />
+                <text x="710" y="505" fill="#facc15" fontSize="10">H2S SPIKE</text>
               </g>
 
-              {/* Highly Informative Sensor Nodes (The "Informative" aspect) */}
+              {/* 🔴 Status Signals: CRITICAL ALERT (Red) inside FCCU */}
+              <g transform="translate(680, 150)">
+                <circle cx="0" cy="0" r="6" fill="#ef4444" filter="url(#glowRed)" className="hazard-ping" />
+                <circle cx="0" cy="0" r="15" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
+                
+                {/* Warning Popup Overlay */}
+                <line x1="0" y1="0" x2="60" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
+                <rect x="60" y="-80" width="160" height="55" fill="rgba(11, 16, 30, 0.95)" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <text x="68" y="-62" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
+                <text x="68" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
+                <text x="68" y="-36" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
+              </g>
               
-              {/* Sensor 1 - Storage */}
-              <g transform="translate(80, 160)">
-                <circle cx="0" cy="0" r="6" fill="var(--brand-cream)" />
-                <line x1="0" y1="0" x2="-20" y2="-20" stroke="var(--brand-cream)" strokeWidth="1" />
-                <rect x="-100" y="-55" width="90" height="35" fill="rgba(11, 16, 30, 0.9)" stroke="var(--brand-cream)" strokeWidth="1" rx="2" />
-                <text x="-95" y="-40" fill="var(--brand-cream)" fontSize="10" fontWeight="700">T-101 LVL</text>
-                <text x="-95" y="-25" fill="rgba(242, 232, 207, 0.7)" fontSize="10">84.2% | STABLE</text>
-              </g>
-
-              {/* Sensor 2 - Main Processing (CRITICAL ANOMALY) */}
-              <g transform="translate(450, 350)">
-                <circle cx="0" cy="0" r="8" fill="var(--brand-brown)" />
-                <circle cx="0" cy="0" r="16" fill="none" stroke="var(--brand-brown)" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
-                <line x1="0" y1="0" x2="40" y2="40" stroke="var(--brand-brown)" strokeWidth="1.5" />
-                <rect x="40" y="40" width="130" height="50" fill="rgba(166, 124, 82, 0.15)" stroke="var(--brand-brown)" strokeWidth="1.5" rx="2" />
-                <text x="48" y="58" fill="var(--brand-brown)" fontSize="11" fontWeight="800">PUMP P101 - ALERT</text>
-                <text x="48" y="72" fill="var(--brand-cream)" fontSize="10">TEMP: 82°C (HIGH)</text>
-                <text x="48" y="84" fill="var(--brand-cream)" fontSize="10">VIB: 4.2 mm/s</text>
-              </g>
-
-              {/* Sensor 3 - Control */}
-              <g transform="translate(750, 200)">
-                <circle cx="0" cy="0" r="6" fill="var(--brand-cream)" />
-                <line x1="0" y1="0" x2="-30" y2="20" stroke="var(--brand-cream)" strokeWidth="1" />
-                <rect x="-110" y="20" width="80" height="35" fill="rgba(11, 16, 30, 0.9)" stroke="var(--brand-cream)" strokeWidth="1" rx="2" />
-                <text x="-105" y="35" fill="var(--brand-cream)" fontSize="10" fontWeight="700">NETWORK</text>
-                <text x="-105" y="50" fill="rgba(242, 232, 207, 0.7)" fontSize="10">AIR-GAPPED</text>
-              </g>
-
-              {/* Camera / Surveillance Icons (Adding realism like Among Us security) */}
-              <g fill="none" stroke="var(--brand-cream)" strokeWidth="1.5">
-                <circle cx="300" cy="110" r="8" />
-                <circle cx="300" cy="110" r="3" fill="var(--brand-cream)" />
-                <path d="M 300 102 L 315 90 M 300 118 L 315 130" strokeWidth="1" opacity="0.5" />
-                
-                <circle cx="600" cy="400" r="8" />
-                <circle cx="600" cy="400" r="3" fill="var(--brand-cream)" />
-                <path d="M 600 408 L 585 420 M 600 392 L 585 380" strokeWidth="1" opacity="0.5" />
+              {/* Animated Data Flows indicating active pumping */}
+              <g stroke="var(--brand-cream)" strokeWidth="2" fill="none" strokeDasharray="5 15" className="data-stream">
+                <path d="M 300 200 L 300 350 L 550 350 L 550 200" />
+                <path d="M 550 350 L 800 350 L 800 250" />
+                <path d="M 800 350 L 1050 350" />
               </g>
             </svg>
             
             {/* Map Overlay Stats Panel */}
             <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(6, 11, 20, 0.85)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: '6px', backdropFilter: 'blur(4px)'}}>
-              <div style={{color: 'var(--brand-cream)', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '12px', letterSpacing: '1px'}}>SYSTEM TELEMETRY</div>
+              <div style={{color: 'var(--brand-cream)', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '12px', letterSpacing: '1px'}}>MRPL TELEMETRY</div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '150px', fontSize: '0.8rem' }}>
-                  <span style={{color: 'var(--text-secondary)'}}>Overall Status:</span>
-                  <span style={{color: 'var(--brand-brown)', fontWeight: 'bold'}}>WARNING</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '180px', fontSize: '0.8rem' }}>
+                  <span style={{color: 'var(--text-secondary)'}}>Overall Plant Status:</span>
+                  <span style={{color: '#ef4444', fontWeight: 'bold'}}>CRITICAL</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '150px', fontSize: '0.8rem' }}>
-                  <span style={{color: 'var(--text-secondary)'}}>Active Nodes:</span>
-                  <span style={{color: 'var(--brand-cream)'}}>142</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '180px', fontSize: '0.8rem' }}>
+                  <span style={{color: 'var(--text-secondary)'}}>Sensors Online:</span>
+                  <span style={{color: 'var(--brand-cream)'}}>12,458</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '150px', fontSize: '0.8rem' }}>
-                  <span style={{color: 'var(--text-secondary)'}}>Bandwidth:</span>
-                  <span style={{color: 'var(--brand-cream)'}}>Local Only</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '180px', fontSize: '0.8rem' }}>
+                  <span style={{color: 'var(--text-secondary)'}}>Crude Throughput:</span>
+                  <span style={{color: 'var(--brand-cream)'}}>320 TBD</span>
                 </div>
               </div>
 
               <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid var(--border-color)' }}>
-                <div style={{color: 'var(--brand-brown)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase'}}>AI Diagnostic Focus:</div>
-                <div style={{color: 'var(--brand-cream)', fontSize: '0.85rem', marginTop: '4px'}}>Cracking Unit → Pump P101</div>
+                <div style={{color: '#ef4444', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase'}}>AI Diagnostic Focus:</div>
+                <div style={{color: 'var(--brand-cream)', fontSize: '0.85rem', marginTop: '4px'}}>FCCU Reactor → Valve V-204</div>
               </div>
             </div>
           </div>
