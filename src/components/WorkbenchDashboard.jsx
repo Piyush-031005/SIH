@@ -229,7 +229,7 @@ export default function WorkbenchDashboard() {
           </div>
           
           <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#040810', border: '1px solid #1A2235' }}>
-            <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
+            <svg viewBox="-250 0 1450 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
                   <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(242, 232, 207, 0.08)" strokeWidth="1"/>
@@ -247,8 +247,8 @@ export default function WorkbenchDashboard() {
               </defs>
 
               {/* Background Grids */}
-              <rect width="100%" height="100%" fill="url(#gridSmall)" />
-              <rect width="100%" height="100%" fill="url(#gridLarge)" />
+              <rect x="-250" y="0" width="1450" height="700" fill="url(#gridSmall)" />
+              <rect x="-250" y="0" width="1450" height="700" fill="url(#gridLarge)" />
 
               {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
               <g stroke="rgba(166, 124, 82, 0.4)" strokeWidth="3" fill="none">
@@ -332,10 +332,10 @@ export default function WorkbenchDashboard() {
               </g>
 
               {/* Flare Stack */}
-              <g transform="translate(100, 320)">
+              <g transform="translate(150, 310)">
                 <circle cx="0" cy="0" r="10" fill="none" stroke="#facc15" strokeWidth="2" />
                 <circle cx="0" cy="0" r="4" fill="#ef4444" className="hazard-ping" />
-                <text x="0" y="-15" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
+                <text x="0" y="-18" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
               </g>
 
               {/* 🟢 Status Signals: NORMAL (Green) */}
@@ -370,11 +370,11 @@ export default function WorkbenchDashboard() {
                 <circle cx="0" cy="0" r="15" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
                 
                 {/* Warning Popup Overlay */}
-                <line x1="0" y1="0" x2="60" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="60" y="-80" width="160" height="55" fill="rgba(11, 16, 30, 0.95)" stroke="#ef4444" strokeWidth="1.5" rx="4" />
-                <text x="68" y="-62" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
-                <text x="68" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
-                <text x="68" y="-36" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
+                <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
+                <rect x="70" y="-85" width="180" height="65" fill="rgba(11, 16, 30, 0.95)" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
+                <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
+                <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
               </g>
               
               {/* Animated Data Flows indicating active pumping */}

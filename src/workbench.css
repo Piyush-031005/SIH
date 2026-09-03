@@ -314,7 +314,8 @@
   to { transform: rotate(360deg); }
 }
 .rotating-ring {
-  transform-origin: 400px 200px;
+  transform-origin: center;
+  transform-box: fill-box;
   animation: rotateRing 4s linear infinite;
 }
 @keyframes streamFlow {
