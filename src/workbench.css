@@ -289,13 +289,31 @@
 .h-reco { background-color: rgba(250, 204, 21, 0.1); border-left: 2px solid var(--brand-yellow); padding: 8px 10px; font-size: 0.85rem; color: #fef08a; }
 
 /* Responsive adjustments */
+.map-panel { grid-column: span 8; }
+.factory-map-container { display: flex; justify-content: center; align-items: center; padding: 20px 0; }
+.factory-svg { width: 100%; max-width: 600px; height: auto; }
+.map-zone rect { fill: var(--bg-main); stroke-width: 2; transition: all 0.3s; }
+.safe-zone rect { stroke: var(--brand-green); fill: rgba(85, 107, 47, 0.15); }
+.hazard-zone rect { stroke: var(--brand-red); fill: rgba(184, 17, 4, 0.15); }
+.warning-zone rect { stroke: var(--brand-yellow); fill: rgba(250, 204, 21, 0.15); }
+
+@keyframes pingHazard {
+  0% { transform: scale(1); opacity: 1; }
+  75% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.hazard-ping {
+  animation: pingHazard 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  transform-origin: center;
+}
+
 @media (max-width: 1200px) {
-  .upload-panel, .pipeline-panel, .evidence-panel, .security-panel, .deliverables-panel, .timeline-panel, .router-panel, .health-panel {
+  .upload-panel, .pipeline-panel, .evidence-panel, .security-panel, .deliverables-panel, .timeline-panel, .router-panel, .health-panel, .map-panel {
     grid-column: span 6;
   }
 }
 @media (max-width: 768px) {
-  .upload-panel, .pipeline-panel, .evidence-panel, .security-panel, .deliverables-panel, .timeline-panel, .router-panel, .health-panel {
+  .upload-panel, .pipeline-panel, .evidence-panel, .security-panel, .deliverables-panel, .timeline-panel, .router-panel, .health-panel, .map-panel {
     grid-column: span 12;
   }
 }

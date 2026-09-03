@@ -3,7 +3,7 @@ import '../workbench.css';
 import { 
   UploadCloud, FileText, Image as ImageIcon, FileSpreadsheet, File, Scan, 
   Cpu, Eye, Search, Database, Network, BrainCircuit, FileSignature, CheckCircle, 
-  ShieldAlert, Lock, Activity, Thermometer, Clock, ArrowRight, Server, WifiOff, FileDown
+  ShieldAlert, Lock, Activity, Thermometer, Clock, ArrowRight, Server, WifiOff, FileDown, Map
 } from 'lucide-react';
 
 const PIPELINE_STAGES = [
@@ -214,6 +214,57 @@ export default function WorkbenchDashboard() {
             <div className="h-reco">
               <strong>Recommendation:</strong> Inspect within 8 hours
             </div>
+          </div>
+        </div>
+
+        {/* 9. Facility Top View Map */}
+        <div className="wb-panel glass-panel map-panel">
+          <h3><Map size={20}/> Facility Top View</h3>
+          <div className="factory-map-container">
+            <svg viewBox="0 0 500 220" className="factory-svg">
+              {/* Connections */}
+              <path d="M 140 70 L 180 70" stroke="#334155" strokeWidth="3" />
+              <path d="M 320 80 L 360 80" stroke="#334155" strokeWidth="3" />
+              <path d="M 90 110 L 90 140" stroke="#334155" strokeWidth="3" />
+              <path d="M 250 140 L 250 160" stroke="#334155" strokeWidth="3" />
+              <path d="M 410 140 L 410 160" stroke="#334155" strokeWidth="3" />
+
+              {/* Zones */}
+              <g className="map-zone safe-zone">
+                <rect x="40" y="30" width="100" height="80" rx="6" />
+                <text x="90" y="70" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Storage Unit A</text>
+                <circle cx="120" cy="45" r="4" fill="#A3E635" />
+              </g>
+
+              <g className="map-zone hazard-zone">
+                <rect x="180" y="30" width="140" height="110" rx="6" />
+                <text x="250" y="80" textAnchor="middle" fill="#f87171" fontSize="14" fontWeight="700">Pump P101</text>
+                <text x="250" y="100" textAnchor="middle" fill="#fca5a5" fontSize="10">82°C Anomaly</text>
+                <circle cx="250" cy="50" r="8" fill="#f87171" className="hazard-ping" />
+              </g>
+
+              <g className="map-zone safe-zone">
+                <rect x="360" y="30" width="100" height="110" rx="6" />
+                <text x="410" y="90" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Refining B</text>
+                <circle cx="440" cy="45" r="4" fill="#A3E635" />
+              </g>
+
+              <g className="map-zone safe-zone">
+                <rect x="40" y="140" width="100" height="60" rx="6" />
+                <text x="90" y="175" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Control Rm</text>
+              </g>
+
+              <g className="map-zone warning-zone">
+                <rect x="180" y="160" width="140" height="40" rx="6" />
+                <text x="250" y="185" textAnchor="middle" fill="#FACC15" fontSize="12" fontWeight="600">Pipeline Alpha</text>
+                <circle cx="300" cy="175" r="4" fill="#FACC15" />
+              </g>
+
+              <g className="map-zone safe-zone">
+                <rect x="360" y="160" width="100" height="40" rx="6" />
+                <text x="410" y="185" textAnchor="middle" fill="#A3E635" fontSize="12" fontWeight="600">Grid C</text>
+              </g>
+            </svg>
           </div>
         </div>
 
