@@ -247,18 +247,18 @@ export default function WorkbenchDashboard() {
             </div>
           </div>
 
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#0A1128', border: '1px solid var(--border-color)' }}>
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#FFFFFF', border: '1px solid var(--border-color)' }}>
             <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
               <defs>
                 
+                
                 <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
-                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(249, 133, 19, 0.4)" opacity="0.5" strokeWidth="1"/>
-                  <path d="M 0 50 L 50 0" fill="none" stroke="rgba(56, 189, 248, 0.3)" opacity="0.3" strokeWidth="0.5"/>
+                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(1, 75, 170, 0.1)" strokeWidth="1"/>
                 </pattern>
                 <pattern id="gridSmall" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(249, 133, 19, 0.15)" opacity="0.2" strokeWidth="0.5"/>
-                  <path d="M 0 10 L 10 0" fill="none" stroke="rgba(56, 189, 248, 0.1)" opacity="0.15" strokeWidth="0.2"/>
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(1, 75, 170, 0.05)" strokeWidth="0.5"/>
                 </pattern>
+
 
                 <filter id="glowRed">
                   <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -370,7 +370,7 @@ export default function WorkbenchDashboard() {
               </g>
 
               {/* Truck Loading Details */}
-              <g fill="#F98513" opacity="0.7">
+              <g fill="#ef4444" opacity="0.7">
                 {/* Trucks */}
                 <rect x="1040" y="470" width="20" height="45" rx="3" />
                 <rect x="1090" y="470" width="20" height="45" rx="3" />
@@ -395,9 +395,9 @@ export default function WorkbenchDashboard() {
 
               {/* Enhanced Flare Stack */}
               <g transform="translate(150, 310)">
-                <path d="M -15 0 L 15 0 L 10 -40 L -10 -40 Z" fill="var(--border-color)" opacity="0.6" stroke="#F98513" strokeWidth="1" />
-                <circle cx="0" cy="-40" r="10" fill="none" stroke="#F98513" strokeWidth="2" filter="url(#glowOrange)" />
-                <circle cx="0" cy="-40" r="4" fill="#F98513" className="hazard-ping" />
+                <path d="M -15 0 L 15 0 L 10 -40 L -10 -40 Z" fill="var(--border-color)" opacity="0.6" stroke="#ef4444" strokeWidth="1" />
+                <circle cx="0" cy="-40" r="10" fill="none" stroke="#ef4444" strokeWidth="2" filter="url(#glowOrange)" />
+                <circle cx="0" cy="-40" r="4" fill="#ef4444" className="hazard-ping" />
                 <text x="0" y="-55" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
               </g>
 
@@ -422,23 +422,23 @@ export default function WorkbenchDashboard() {
 
               {/* 🟡 Status Signals: WARNING (Yellow/Orange) */}
               <g>
-                <circle cx="180" cy="190" r="4" fill="#F98513" />
-                <line x1="180" y1="190" x2="220" y2="230" stroke="#F98513" strokeWidth="1" />
-                <text x="225" y="240" fill="#F98513" fontSize="10">LVL 95%</text>
+                <circle cx="180" cy="190" r="4" fill="#ef4444" />
+                <line x1="180" y1="190" x2="220" y2="230" stroke="#ef4444" strokeWidth="1" />
+                <text x="225" y="240" fill="#ef4444" fontSize="10">LVL 95%</text>
                 
-                <circle cx="700" cy="500" r="4" fill="#F98513" />
-                <text x="710" y="505" fill="#F98513" fontSize="10">H2S SPIKE</text>
+                <circle cx="700" cy="500" r="4" fill="#ef4444" />
+                <text x="710" y="505" fill="#ef4444" fontSize="10">H2S SPIKE</text>
               </g>
 
               {/* 🔴 Status Signals: CRITICAL ALERT (Red) inside FCCU */}
               <g transform="translate(680, 150)">
-                <circle cx="0" cy="0" r="6" fill="#F98513" filter="url(#glowRed)" className="hazard-ping" />
-                <circle cx="0" cy="0" r="15" fill="none" stroke="#F98513" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
+                <circle cx="0" cy="0" r="6" fill="#ef4444" filter="url(#glowRed)" className="hazard-ping" />
+                <circle cx="0" cy="0" r="15" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
                 
                 {/* Warning Popup Overlay */}
-                <line x1="0" y1="0" x2="70" y2="-50" stroke="#F98513" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="#222527" stroke="#F98513" strokeWidth="1.5" rx="4" />
-                <text x="78" y="-65" fill="#F98513" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
+                <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
+                <rect x="70" y="-85" width="180" height="65" fill="#222527" stroke="#ef4444" strokeWidth="1.5" rx="4" />
+                <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
                 <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
                 <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
               </g>
