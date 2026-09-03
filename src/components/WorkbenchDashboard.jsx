@@ -70,20 +70,20 @@ export default function WorkbenchDashboard() {
           <div className="wb-ai-thinking">
             <h4>AI Thinking Canvas</h4>
             <div className="thinking-row">
-              <span>Reading Inspection Report...</span>
-              <div className="thinking-bar" style={{width: activeStage >= 1 ? '100%' : '30%'}}></div>
+              <div style={{marginBottom: '4px'}}>Reading Inspection Report...</div>
+              <div style={{color: 'var(--brand-blue)'}}>{activeStage >= 1 ? '█████████████' : '████'}</div>
             </div>
             <div className="thinking-row">
-              <span>Searching SOP...</span>
-              <div className="thinking-bar" style={{width: activeStage >= 3 ? '100%' : '0%'}}></div>
+              <div style={{marginBottom: '4px'}}>Searching SOP...</div>
+              <div style={{color: 'var(--brand-blue)'}}>{activeStage >= 3 ? '███████' : (activeStage >= 2 ? '██' : '')}</div>
             </div>
             <div className="thinking-row">
-              <span>Comparing Maintenance Logs...</span>
-              <div className="thinking-bar" style={{width: activeStage >= 4 ? '100%' : '0%'}}></div>
+              <div style={{marginBottom: '4px'}}>Comparing Maintenance Logs...</div>
+              <div style={{color: 'var(--brand-blue)'}}>{activeStage >= 4 ? '████████' : ''}</div>
             </div>
             <div className="thinking-row">
-              <span>Generating Report...</span>
-              <div className="thinking-bar" style={{width: activeStage >= 6 ? '100%' : '0%'}}></div>
+              <div style={{marginBottom: '4px'}}>Generating Report...</div>
+              <div style={{color: 'var(--brand-blue)'}}>{activeStage >= 6 ? '████████████████' : ''}</div>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function WorkbenchDashboard() {
           <div className="pipeline-flow">
             {PIPELINE_STAGES.map((stage, idx) => (
               <React.Fragment key={idx}>
-                <div className={`pipe-node ${activeStage === idx ? 'active pulse' : ''} ${activeStage > idx ? 'completed' : ''}`}>
+                <div className={`pipe-node ${activeStage === idx ? 'active' : ''} ${activeStage > idx ? 'completed' : ''}`}>
                   {stage}
                 </div>
                 {idx < PIPELINE_STAGES.length - 1 && (
