@@ -247,211 +247,215 @@ export default function WorkbenchDashboard() {
             </div>
           </div>
 
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#FFFFFF', border: '1px solid var(--border-color)' }}>
-            <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
-              <defs>
-                
-                
-                <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
-                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(1, 75, 170, 0.1)" strokeWidth="1"/>
-                </pattern>
-                <pattern id="gridSmall" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(1, 75, 170, 0.05)" strokeWidth="0.5"/>
-                </pattern>
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#0A1128', border: '1px solid var(--border-color)' }}>
+            
+              <svg viewBox="0 0 1200 700" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', backgroundColor: '#F8FAFC' }}>
+                <defs>
+                  {/* Soft Shadow for illustrative 2D look */}
+                  <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+                    <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#94A3B8" floodOpacity="0.3"/>
+                  </filter>
+                  <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
 
+                  {/* Illustrative City Map Background Pattern */}
+                  <pattern id="cityMapGrid" width="400" height="400" patternUnits="userSpaceOnUse">
+                    {/* Soft grass patches */}
+                    <path d="M 50 50 Q 100 0, 150 50 T 250 50 Q 300 100, 250 150 T 150 150 Q 100 200, 50 150 T 50 50" fill="#F1F8F1" opacity="0.8"/>
+                    <path d="M 250 250 Q 300 200, 350 250 T 350 350 Q 300 400, 250 350 T 250 250" fill="#F1F8F1" opacity="0.8"/>
+                    
+                    {/* Meandering Light Blue River/Roads */}
+                    <path d="M -50 200 Q 100 100, 200 200 T 450 100" fill="none" stroke="#E0E7FF" strokeWidth="20" strokeLinecap="round"/>
+                    <path d="M 150 -50 Q 200 100, 150 200 T 200 450" fill="none" stroke="#F1F5F9" strokeWidth="15" strokeLinecap="round"/>
+                    
+                    {/* Small streets/paths */}
+                    <path d="M 0 50 L 400 50 M 0 150 L 400 150 M 50 0 L 50 400 M 150 0 L 150 400" fill="none" stroke="#E2E8F0" strokeWidth="2" opacity="0.5"/>
+                    <path d="M 0 100 L 400 100 M 0 200 L 400 200 M 100 0 L 100 400 M 200 0 L 200 400" fill="none" stroke="#E2E8F0" strokeWidth="1" opacity="0.3"/>
+                  </pattern>
+                </defs>
 
-                <filter id="glowRed">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-                <filter id="glowOrange">
-                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
+                {/* Base Illustrative Ground */}
+                <rect x="0" y="0" width="1200" height="700" fill="url(#cityMapGrid)" />
 
-              {/* Background Grids */}
-              <rect x="0" y="0" width="1200" height="700" fill="url(#gridSmall)" />
-              <rect x="0" y="0" width="1200" height="700" fill="url(#gridLarge)" />
+                {/* --- Interconnecting Pipes & Paths --- */}
+                {/* Main Highways / Utility Pipes */}
+                <g stroke="#94A3B8" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M 200 150 L 350 150 L 350 135" />
+                  <path d="M 500 135 L 600 135 L 675 135" />
+                  <path d="M 500 180 L 675 180" />
+                  <path d="M 675 220 L 675 450 L 675 525" />
+                  <path d="M 675 155 L 850 155" />
+                  <path d="M 950 230 L 950 270" />
+                  <path d="M 750 525 L 850 525" />
+                  <path d="M 1000 550 L 1020 550" />
+                </g>
 
-              {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
-              <g stroke="rgba(249, 133, 19, 0.3)" strokeWidth="3" fill="none" opacity="0.8">
-                {/* Horizontal main rack */}
-                <path d="M 50 350 L 1150 350" />
-                <path d="M 50 360 L 1150 360" />
-                <path d="M 50 340 L 1150 340" />
-                <path d="M 50 370 L 1150 370" strokeWidth="1.5" stroke="var(--text-secondary)" opacity="0.4" />
-                
-                {/* Vertical racks branching off */}
-                <path d="M 300 100 L 300 600" />
-                <path d="M 310 100 L 310 600" />
-                <path d="M 550 50 L 550 650" />
-                <path d="M 560 50 L 560 650" />
-                <path d="M 800 150 L 800 550" />
-                
-                {/* Interconnecting pipes */}
-                <path d="M 150 150 L 300 150" strokeWidth="2" />
-                <path d="M 310 200 L 550 200" strokeWidth="2" />
-                <path d="M 560 250 L 800 250" strokeWidth="2" />
-                <path d="M 560 500 L 800 500" strokeWidth="2" />
-                <path d="M 800 450 L 1050 450" strokeWidth="2" />
-                
-                {/* Micro piping */}
-                <path d="M 350 300 L 350 400 M 400 300 L 400 400 M 450 300 L 450 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
-                <path d="M 600 300 L 600 400 M 650 300 L 650 400 M 700 300 L 700 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
-                <path d="M 850 300 L 850 400 M 900 300 L 900 400 M 950 300 L 950 400" strokeWidth="1" stroke="var(--text-secondary)" opacity="0.3" />
-              </g>
+                {/* Active Flow Streams (Green/Blue/Red) */}
+                <g strokeWidth="2.5" fill="none" strokeLinecap="round" strokeDasharray="6 8" className="data-stream">
+                  {/* Normal flow - Emerald Green */}
+                  <path d="M 200 150 L 350 150 L 350 135" stroke="#10B981" />
+                  <path d="M 500 135 L 600 135 L 675 135" stroke="#10B981" />
+                  <path d="M 675 220 L 675 450 L 675 525" stroke="#10B981" />
+                  
+                  {/* Product flow - Royal Blue */}
+                  <path d="M 750 525 L 850 525" stroke="#014BAA" />
+                  <path d="M 1000 550 L 1020 550" stroke="#014BAA" />
 
-              {/* Functional Zones / Refinery Units */}
-              <g fill="#222527" stroke="var(--brand-brown)" strokeWidth="1.5" opacity="0.95">
-                {/* Crude Tank Farm */}
-                <rect x="50" y="50" width="200" height="250" rx="4" />
-                
-                {/* CDU / VDU (Crude/Vacuum Distillation) */}
-                <polygon points="350,80 500,80 520,130 500,180 350,180 330,130" />
-                
-                {/* Heat Exchanger Train (New) */}
-                <rect x="350" y="200" width="150" height="30" rx="2" />
-                
-                {/* FCCU (Fluid Catalytic Cracking Unit) */}
-                <polygon points="600,60 750,60 780,150 750,240 600,240 570,150" />
-                
-                {/* Hydrocracker / DHDT */}
-                <rect x="850" y="80" width="200" height="150" rx="4" />
-                
-                {/* Cooling Tower (New) */}
-                <rect x="850" y="270" width="250" height="50" rx="4" />
-                
-                {/* SRU (Sulfur Recovery Unit) */}
-                <polygon points="600,450 750,450 750,600 600,600 550,525" />
-                
-                {/* Product Storage */}
-                <rect x="850" y="450" width="150" height="200" rx="4" />
-                
-                {/* Truck Loading Gantry (New) */}
-                <rect x="1020" y="450" width="120" height="200" rx="4" fill="#222527" stroke="var(--border-color)" />
-                
-                {/* Utilities / Power */}
-                <polygon points="50,450 250,450 280,550 250,650 50,650" />
-                
-                {/* Command Center */}
-                <rect x="350" y="450" width="150" height="150" rx="4" fill="var(--bg-hover)" opacity="0.5" />
-              </g>
+                  {/* Warning flow - Red */}
+                  <path d="M 675 155 L 850 155" stroke="#EF4444" />
+                </g>
 
-              {/* Tank Farm Details (Top View Circles) */}
-              <g fill="var(--border-color)" opacity="0.3" stroke="var(--brand-cream)" strokeWidth="1">
-                {/* Crude Tanks */}
-                <circle cx="100" cy="110" r="30" />
-                <circle cx="180" cy="110" r="30" />
-                <circle cx="100" cy="190" r="30" />
-                <circle cx="180" cy="190" r="30" />
-                {/* Product Tanks */}
-                <circle cx="890" cy="490" r="25" />
-                <circle cx="960" cy="490" r="25" />
-                <circle cx="890" cy="550" r="25" />
-                <circle cx="960" cy="550" r="25" />
-                <circle cx="890" cy="610" r="25" />
-                <circle cx="960" cy="610" r="25" />
-              </g>
-              
-              {/* Cooling Tower Fans */}
-              <g fill="var(--border-color)" opacity="0.5" stroke="var(--brand-cream)" strokeWidth="0.5">
-                <circle cx="880" cy="295" r="18" />
-                <circle cx="930" cy="295" r="18" />
-                <circle cx="980" cy="295" r="18" />
-                <circle cx="1030" cy="295" r="18" />
-                <circle cx="1080" cy="295" r="18" />
-              </g>
-
-              {/* Truck Loading Details */}
-              <g fill="#ef4444" opacity="0.7">
-                {/* Trucks */}
-                <rect x="1040" y="470" width="20" height="45" rx="3" />
-                <rect x="1090" y="470" width="20" height="45" rx="3" />
-                <rect x="1040" y="540" width="20" height="45" rx="3" />
-                <rect x="1090" y="580" width="20" height="45" rx="3" />
-              </g>
-
-              {/* Labels & Structural Details */}
-              <g fill="var(--brand-cream)" fontFamily="Inter" fontSize="12" fontWeight="700" letterSpacing="1.5">
-                <text x="150" y="40" textAnchor="middle">CRUDE TANK FARM</text>
-                <text x="425" y="135" textAnchor="middle">CDU / VDU</text>
-                <text x="425" y="220" textAnchor="middle" fontSize="10" opacity="0.8">HEAT EXCHANGERS</text>
-                <text x="675" y="155" textAnchor="middle" fontSize="16">FCCU</text>
-                <text x="950" y="70" textAnchor="middle">HYDROCRACKER</text>
-                <text x="975" y="260" textAnchor="middle">COOLING TOWERS</text>
-                <text x="675" y="440" textAnchor="middle">SULFUR RECOVERY</text>
-                <text x="925" y="435" textAnchor="middle">PRODUCT STORAGE</text>
-                <text x="1080" y="435" textAnchor="middle">TRUCK BAY</text>
-                <text x="150" y="440" textAnchor="middle">CAPTIVE POWER</text>
-                <text x="425" y="525" textAnchor="middle">CONTROL ROOM</text>
-              </g>
-
-              {/* Enhanced Flare Stack */}
-              <g transform="translate(150, 310)">
-                <path d="M -15 0 L 15 0 L 10 -40 L -10 -40 Z" fill="var(--border-color)" opacity="0.6" stroke="#ef4444" strokeWidth="1" />
-                <circle cx="0" cy="-40" r="10" fill="none" stroke="#ef4444" strokeWidth="2" filter="url(#glowOrange)" />
-                <circle cx="0" cy="-40" r="4" fill="#ef4444" className="hazard-ping" />
-                <text x="0" y="-55" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
-              </g>
-
-              {/* 🟢 Status Signals: NORMAL (Green) */}
-              <g>
-                <circle cx="100" cy="110" r="4" fill="#FBF3F0" />
-                <circle cx="180" cy="110" r="4" fill="#FBF3F0" />
-                <circle cx="100" cy="190" r="4" fill="#FBF3F0" />
-                <circle cx="390" cy="150" r="4" fill="#FBF3F0" />
-                <circle cx="450" cy="100" r="4" fill="#FBF3F0" />
-                <circle cx="880" cy="120" r="4" fill="#FBF3F0" />
-                <circle cx="1020" cy="180" r="4" fill="#FBF3F0" />
-                <circle cx="890" cy="490" r="4" fill="#FBF3F0" />
-                <circle cx="960" cy="550" r="4" fill="#FBF3F0" />
-                <circle cx="120" cy="550" r="4" fill="#FBF3F0" />
-                <circle cx="200" cy="600" r="4" fill="#FBF3F0" />
-                <circle cx="425" cy="550" r="4" fill="#FBF3F0" />
-                <circle cx="630" cy="550" r="4" fill="#FBF3F0" />
-                <circle cx="880" cy="295" r="4" fill="#FBF3F0" />
-                <circle cx="1080" cy="295" r="4" fill="#FBF3F0" />
-              </g>
-
-              {/* 🟡 Status Signals: WARNING (Yellow/Orange) */}
-              <g>
-                <circle cx="180" cy="190" r="4" fill="#ef4444" />
-                <line x1="180" y1="190" x2="220" y2="230" stroke="#ef4444" strokeWidth="1" />
-                <text x="225" y="240" fill="#ef4444" fontSize="10">LVL 95%</text>
+                {/* --- Facilities / Machinery Nodes (Illustrative 2D with Shadows) --- */}
                 
-                <circle cx="700" cy="500" r="4" fill="#ef4444" />
-                <text x="710" y="505" fill="#ef4444" fontSize="10">H2S SPIKE</text>
-              </g>
+                {/* 1. Crude Tank Farm */}
+                <g transform="translate(150, 150)">
+                  <rect x="-80" y="-80" width="160" height="160" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" rx="12" filter="url(#dropShadow)" />
+                  <text x="0" y="-60" textAnchor="middle" fill="#014BAA" fontSize="11" fontWeight="700">CRUDE TANK FARM</text>
+                  
+                  {/* Illustrative Tanks */}
+                  <circle cx="-40" cy="-20" r="24" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="-40" cy="-20" r="16" fill="#E2E8F0" />
+                  <circle cx="-40" cy="-20" r="3" fill="#10B981" />
+                  
+                  <circle cx="40" cy="-20" r="24" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="40" cy="-20" r="16" fill="#E2E8F0" />
+                  <circle cx="40" cy="-20" r="3" fill="#10B981" />
+                  
+                  <circle cx="-40" cy="40" r="24" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="-40" cy="40" r="16" fill="#E2E8F0" />
+                  <circle cx="-40" cy="40" r="3" fill="#10B981" />
+                  
+                  {/* Flare Stack Alert */}
+                  <circle cx="40" cy="40" r="24" fill="#FEF2F2" stroke="#EF4444" strokeWidth="2" />
+                  <circle cx="40" cy="40" r="16" fill="#FECACA" />
+                  <circle cx="40" cy="40" r="4" fill="#EF4444" filter="url(#glowRed)" className="hazard-ping" />
+                  <line x1="40" y1="40" x2="80" y2="80" stroke="#EF4444" strokeWidth="1.5" />
+                  <text x="85" y="85" fill="#EF4444" fontSize="10" fontWeight="bold">LVL 95%</text>
+                </g>
 
-              {/* 🔴 Status Signals: CRITICAL ALERT (Red) inside FCCU */}
-              <g transform="translate(680, 150)">
-                <circle cx="0" cy="0" r="6" fill="#ef4444" filter="url(#glowRed)" className="hazard-ping" />
-                <circle cx="0" cy="0" r="15" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
-                
-                {/* Warning Popup Overlay */}
-                <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="#222527" stroke="#ef4444" strokeWidth="1.5" rx="4" />
-                <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
-                <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
-                <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
-              </g>
-              
-              {/* Animated Data Flows indicating active pumping */}
-              <g stroke="var(--brand-cream)" strokeWidth="2" fill="none" strokeDasharray="5 15" className="data-stream">
-                <path d="M 300 200 L 300 350 L 550 350 L 550 200" />
-                <path d="M 550 350 L 800 350 L 800 250" />
-                <path d="M 800 350 L 1050 350" />
-                <path d="M 150 310 L 150 350 L 50 350" />
-                <path d="M 1050 450 L 1050 470" />
-              </g>
-            </svg>
+                {/* 2. CDU / VDU */}
+                <g transform="translate(425, 135)">
+                  <polygon points="-60,-30 60,-30 80,0 60,30 -60,30 -80,0" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" filter="url(#dropShadow)" />
+                  <text x="0" y="5" textAnchor="middle" fill="#014BAA" fontSize="12" fontWeight="700">CDU / VDU</text>
+                  
+                  <circle cx="-40" cy="-15" r="4" fill="#10B981" />
+                  <circle cx="40" cy="15" r="4" fill="#10B981" />
+                  
+                  {/* Heat Exchangers */}
+                  <rect x="-60" y="50" width="120" height="25" fill="#FFFFFF" stroke="#014BAA" strokeWidth="1" rx="4" filter="url(#dropShadow)" />
+                  <text x="0" y="66" textAnchor="middle" fill="#64748B" fontSize="9" fontWeight="600">HEAT EXCHANGERS</text>
+                </g>
+
+                {/* 3. FCCU (Alert Node) */}
+                <g transform="translate(675, 180)">
+                  <polygon points="-75,-70 75,-70 100,0 75,70 -75,70 -100,0" fill="#FFFFFF" stroke="#EF4444" strokeWidth="3" filter="url(#dropShadow)" />
+                  <text x="0" y="5" textAnchor="middle" fill="#EF4444" fontSize="16" fontWeight="800">FCCU</text>
+                  
+                  <circle cx="0" cy="0" r="30" fill="none" stroke="#EF4444" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
+                  
+                  {/* Alert Box popup pointing to FCCU */}
+                  <path d="M 30 -30 L 70 -70 L 220 -70" fill="none" stroke="#EF4444" strokeWidth="1.5" />
+                  <rect x="70" y="-105" width="160" height="60" fill="#FEF2F2" stroke="#EF4444" strokeWidth="2" rx="6" filter="url(#dropShadow)" />
+                  <text x="80" y="-85" fill="#EF4444" fontSize="11" fontWeight="800">FCCU REACTOR ALERT</text>
+                  <text x="80" y="-70" fill="#014BAA" fontSize="9" fontWeight="600">PRESSURE: 42.5 kg/cm²</text>
+                  <text x="80" y="-55" fill="#014BAA" fontSize="9" fontWeight="600">VALVE V-204 STUCK</text>
+                </g>
+
+                {/* 4. Hydrocracker */}
+                <g transform="translate(950, 155)">
+                  <rect x="-80" y="-60" width="160" height="120" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" rx="8" filter="url(#dropShadow)" />
+                  <text x="0" y="-10" textAnchor="middle" fill="#014BAA" fontSize="12" fontWeight="700">HYDROCRACKER</text>
+                  <circle cx="60" cy="40" r="4" fill="#10B981" />
+                </g>
+
+                {/* 5. Cooling Towers */}
+                <g transform="translate(950, 295)">
+                  <rect x="-120" y="-30" width="240" height="60" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" rx="8" filter="url(#dropShadow)" />
+                  <text x="0" y="-38" textAnchor="middle" fill="#014BAA" fontSize="11" fontWeight="700">COOLING TOWERS</text>
+                  
+                  {/* Fans */}
+                  <circle cx="-90" cy="0" r="20" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="-45" cy="0" r="20" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="0" cy="0" r="20" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="45" cy="0" r="20" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  <circle cx="90" cy="0" r="20" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="1" />
+                  
+                  {/* Fan centers */}
+                  <circle cx="-90" cy="0" r="3" fill="#10B981" />
+                  <circle cx="-45" cy="0" r="3" fill="#10B981" />
+                  <circle cx="0" cy="0" r="3" fill="#10B981" />
+                  <circle cx="45" cy="0" r="3" fill="#10B981" />
+                  <circle cx="90" cy="0" r="3" fill="#10B981" />
+                </g>
+
+                {/* 6. Sulfur Recovery */}
+                <g transform="translate(675, 525)">
+                  <polygon points="-75,-75 75,-75 75,75 -75,75 -125,0" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" filter="url(#dropShadow)" />
+                  <text x="0" y="-55" textAnchor="middle" fill="#014BAA" fontSize="12" fontWeight="700">SULFUR RECOVERY</text>
+                  
+                  {/* H2S Spike Alert */}
+                  <circle cx="20" cy="-20" r="5" fill="#EF4444" className="hazard-ping" />
+                  <line x1="20" y1="-20" x2="60" y2="-20" stroke="#EF4444" strokeWidth="1" />
+                  <text x="65" y="-17" fill="#EF4444" fontSize="10" fontWeight="bold">H2S SPIKE</text>
+                  <circle cx="-30" cy="30" r="4" fill="#10B981" />
+                </g>
+
+                {/* 7. Product Storage */}
+                <g transform="translate(925, 535)">
+                  <rect x="-70" y="-80" width="140" height="160" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" rx="8" filter="url(#dropShadow)" />
+                  <text x="0" y="-90" textAnchor="middle" fill="#014BAA" fontSize="11" fontWeight="700">PRODUCT STORAGE</text>
+                  
+                  {/* Storage Silos */}
+                  <circle cx="-30" cy="-40" r="22" fill="#F1F5F9" stroke="#94A3B8" />
+                  <circle cx="30" cy="-40" r="22" fill="#F1F5F9" stroke="#94A3B8" />
+                  <circle cx="-30" cy="20" r="22" fill="#F1F5F9" stroke="#94A3B8" />
+                  <circle cx="30" cy="20" r="22" fill="#F1F5F9" stroke="#94A3B8" />
+                  
+                  <circle cx="-30" cy="-40" r="3" fill="#10B981" />
+                  <circle cx="30" cy="-40" r="3" fill="#10B981" />
+                  <circle cx="-30" cy="20" r="3" fill="#10B981" />
+                  <circle cx="30" cy="20" r="3" fill="#10B981" />
+                </g>
+
+                {/* 8. Truck Bay */}
+                <g transform="translate(1080, 535)">
+                  <rect x="-50" y="-80" width="100" height="160" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" rx="8" filter="url(#dropShadow)" />
+                  <text x="0" y="-90" textAnchor="middle" fill="#014BAA" fontSize="11" fontWeight="700">TRUCK BAY</text>
+                  
+                  {/* Trucks */}
+                  <rect x="-30" y="-60" width="20" height="40" fill="#F59E0B" rx="2" filter="url(#dropShadow)" />
+                  <rect x="10" y="-60" width="20" height="40" fill="#F59E0B" rx="2" filter="url(#dropShadow)" />
+                  <rect x="-30" y="0" width="20" height="40" fill="#F59E0B" rx="2" filter="url(#dropShadow)" />
+                  
+                  <circle cx="-20" cy="-70" r="3" fill="#10B981" />
+                </g>
+
+                {/* 9. Captive Power & Control Room */}
+                <g transform="translate(150, 550)">
+                  <polygon points="-100,-100 100,-100 130,0 100,100 -100,100" fill="#FFFFFF" stroke="#014BAA" strokeWidth="2" filter="url(#dropShadow)" />
+                  <text x="0" y="-75" textAnchor="middle" fill="#014BAA" fontSize="12" fontWeight="700">CAPTIVE POWER</text>
+                  <circle cx="-30" cy="10" r="4" fill="#10B981" />
+                  <circle cx="50" cy="50" r="4" fill="#10B981" />
+                </g>
+                <g transform="translate(425, 550)">
+                  <rect x="-75" y="-75" width="150" height="150" fill="#F8FAFC" stroke="#014BAA" strokeWidth="2" rx="8" filter="url(#dropShadow)" />
+                  <text x="0" y="-10" textAnchor="middle" fill="#014BAA" fontSize="12" fontWeight="700">CONTROL ROOM</text>
+                  <circle cx="0" cy="20" r="4" fill="#10B981" />
+                </g>
+              </svg>
+
           </div>
         </div>
 
