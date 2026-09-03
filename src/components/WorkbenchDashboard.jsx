@@ -219,80 +219,160 @@ export default function WorkbenchDashboard() {
 
         {/* 9. Facility Top View Map */}
         <div className="wb-panel glass-panel map-panel">
-          <h3><Map size={20}/> Facility Top View</h3>
-          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '4px', backgroundColor: '#0B101E' }}>
-            <svg viewBox="0 0 800 400" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', opacity: 0.85 }}>
-              {/* Complex background grid/roads */}
-              <g stroke="var(--brand-cream)" strokeWidth="1" fill="none" opacity="0.3">
-                {/* Random intersecting paths mimicking roads/pipes */}
-                <path d="M-50 50 Q 200 100 400 50 T 850 150" />
-                <path d="M-50 150 Q 300 300 500 200 T 850 350" />
-                <path d="M 100 -50 Q 150 200 100 450" />
-                <path d="M 300 -50 Q 250 250 400 450" />
-                <path d="M 600 -50 Q 550 200 700 450" />
-                <path d="M 0 350 L 800 50" />
-                <path d="M 0 50 L 800 350" />
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
+            <h3 style={{ border: 'none', margin: 0, padding: 0 }}><Map size={20}/> Facility Top View</h3>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--brand-cream)', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--brand-cream)'}}></div> Normal</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--brand-brown)', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--brand-brown)'}}></div> Alert</span>
+            </div>
+          </div>
+          
+          <div className="factory-map-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#040810', border: '1px solid #1A2235' }}>
+            <svg viewBox="0 0 1000 500" className="factory-svg-complex" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%' }}>
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(242, 232, 207, 0.05)" strokeWidth="1"/>
+                </pattern>
+                <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(242, 232, 207, 0.02)" strokeWidth="0.5"/>
+                </pattern>
+              </defs>
+
+              {/* Background Grids */}
+              <rect width="100%" height="100%" fill="url(#smallGrid)" />
+              <rect width="100%" height="100%" fill="url(#grid)" />
+
+              {/* Complex Background Infrastructure (Roads/Pipes) */}
+              <g stroke="rgba(242, 232, 207, 0.15)" strokeWidth="1.5" fill="none">
+                <path d="M -50 100 L 300 100 L 400 250 L 800 250 L 1050 100" />
+                <path d="M 150 -50 L 150 150 L 250 250 L 250 550" />
+                <path d="M 450 550 L 450 400 L 600 250 L 600 -50" />
+                <path d="M 850 550 L 850 350 L 700 250 L 700 -50" />
+                <path d="M -50 350 L 200 350 L 300 450 L 1050 450" />
                 
-                {/* Secondary finer grid */}
-                <path d="M 50 0 L 50 400 M 150 0 L 150 400 M 250 0 L 250 400 M 350 0 L 350 400 M 450 0 L 450 400 M 550 0 L 550 400 M 650 0 L 650 400 M 750 0 L 750 400" strokeWidth="0.5" opacity="0.5"/>
-                <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150 M 0 200 L 800 200 M 0 250 L 800 250 M 0 300 L 800 300 M 0 350 L 800 350" strokeWidth="0.5" opacity="0.5"/>
+                {/* Diagonal secondary paths */}
+                <path d="M 0 0 L 1000 500" strokeWidth="0.5" strokeDasharray="4 4" />
+                <path d="M 0 500 L 1000 0" strokeWidth="0.5" strokeDasharray="4 4" />
               </g>
 
-              {/* Main arterial pipes/roads */}
-              <g stroke="var(--brand-brown)" strokeWidth="3" fill="none" opacity="0.8">
-                <path d="M 200 100 L 400 200 L 600 150" />
-                <path d="M 400 200 L 400 350 L 550 350" />
-                <path d="M 200 100 L 100 250 L 250 350 L 400 350" />
-              </g>
-
-              {/* Functional Zones / Buildings */}
-              <g fill="var(--bg-panel)" stroke="var(--brand-brown)" strokeWidth="1.5">
-                <polygon points="180,80 220,90 230,120 170,110" />
-                <polygon points="380,180 440,190 420,230 370,210" />
-                <polygon points="580,130 630,120 640,160 590,170" />
-                <polygon points="90,240 120,230 140,270 100,280" />
-                <polygon points="230,340 270,330 280,370 240,380" />
-                <polygon points="530,340 570,330 580,370 540,380" />
-              </g>
-
-              {/* Highlighted Data Nodes */}
-              <g>
-                {/* Node 1 - Normal */}
-                <circle cx="200" cy="100" r="6" fill="var(--brand-cream)" />
-                <text x="200" y="70" textAnchor="middle" fill="var(--brand-cream)" fontSize="12" fontWeight="600" letterSpacing="1">UNIT ALPHA</text>
-
-                {/* Node 2 - Warning / Anomaly */}
-                <circle cx="400" cy="200" r="8" fill="var(--brand-brown)" />
-                <circle cx="400" cy="200" r="14" fill="none" stroke="var(--brand-brown)" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
-                <text x="400" y="170" textAnchor="middle" fill="var(--brand-brown)" fontSize="14" fontWeight="700" letterSpacing="1">PUMP P101</text>
-                <text x="400" y="225" textAnchor="middle" fill="var(--brand-cream)" fontSize="10">TEMP ANOMALY DETECTED</text>
+              {/* Complex Polygonal Rooms / Zones (Like Among Us Map) */}
+              <g fill="#0B101E" stroke="var(--brand-cream)" strokeWidth="2" opacity="0.9">
+                {/* Zone 1: Storage / Receiving */}
+                <polygon points="50,150 200,150 250,200 200,300 50,300 20,225" />
                 
-                {/* Node 3 - Normal */}
-                <circle cx="600" cy="150" r="6" fill="var(--brand-cream)" />
-                <text x="600" y="120" textAnchor="middle" fill="var(--brand-cream)" fontSize="12" fontWeight="600" letterSpacing="1">REFINERY B</text>
-
-                {/* Node 4 - Normal */}
-                <circle cx="100" cy="250" r="5" fill="var(--brand-cream)" />
-                <text x="70" y="240" textAnchor="end" fill="var(--brand-cream)" fontSize="10" letterSpacing="1">STORAGE</text>
-
-                {/* Node 5 - Normal */}
-                <circle cx="550" cy="350" r="5" fill="var(--brand-cream)" />
-                <text x="580" y="360" textAnchor="start" fill="var(--brand-cream)" fontSize="10" letterSpacing="1">CONTROL</text>
+                {/* Zone 2: Main Processing (Octagon-ish) */}
+                <polygon points="350,100 550,100 650,200 650,350 550,450 350,450 250,350 250,200" />
+                
+                {/* Zone 3: Control & Admin */}
+                <polygon points="700,50 900,50 950,150 900,250 700,250 650,150" />
+                
+                {/* Zone 4: Power / Utility */}
+                <polygon points="750,300 950,300 950,450 700,450 680,375" />
               </g>
 
-              {/* Data streams (animated dashes) */}
-              <g stroke="var(--brand-cream)" strokeWidth="1.5" fill="none" strokeDasharray="5 10" className="data-stream">
-                <path d="M 200 100 L 400 200" />
-                <path d="M 600 150 L 400 200" />
-                <path d="M 400 350 L 400 200" />
+              {/* Corridors / Connecting Tubes */}
+              <g stroke="rgba(166, 124, 82, 0.6)" strokeWidth="6" fill="none">
+                <path d="M 225 225 L 300 225" />
+                <path d="M 600 175 L 675 175" />
+                <path d="M 600 375 L 725 375" />
+              </g>
+
+              {/* Animated Data Flows inside corridors */}
+              <g stroke="var(--brand-cream)" strokeWidth="2" fill="none" strokeDasharray="5 10" className="data-stream">
+                <path d="M 225 225 L 300 225" />
+                <path d="M 675 175 L 600 175" />
+                <path d="M 725 375 L 600 375" />
+              </g>
+
+              {/* Interior Details & Room Labels */}
+              <g fill="var(--brand-cream)" fontFamily="Inter">
+                {/* Storage */}
+                <text x="135" y="210" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="2">TANK FARM</text>
+                <text x="135" y="230" textAnchor="middle" fontSize="10" opacity="0.7">CAPACITY: 84%</text>
+                <rect x="70" y="240" width="40" height="40" fill="none" stroke="rgba(242, 232, 207, 0.3)" />
+                <rect x="120" y="240" width="40" height="40" fill="none" stroke="rgba(242, 232, 207, 0.3)" />
+                <rect x="170" y="240" width="40" height="40" fill="none" stroke="rgba(242, 232, 207, 0.3)" />
+                <circle cx="90" cy="260" r="10" fill="rgba(242, 232, 207, 0.2)" />
+                <circle cx="140" cy="260" r="10" fill="rgba(242, 232, 207, 0.2)" />
+                <circle cx="190" cy="260" r="10" fill="rgba(242, 232, 207, 0.2)" />
+
+                {/* Main Processing */}
+                <text x="450" y="250" textAnchor="middle" fontSize="20" fontWeight="800" letterSpacing="3">CRACKING UNIT</text>
+                
+                {/* Control Admin */}
+                <text x="815" y="140" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="2">COMMAND CENTER</text>
+                <text x="815" y="160" textAnchor="middle" fontSize="10" opacity="0.7">PERSONNEL: 12</text>
+                
+                {/* Power */}
+                <text x="840" y="370" textAnchor="middle" fontSize="16" fontWeight="700" letterSpacing="2">GENERATOR</text>
+              </g>
+
+              {/* Highly Informative Sensor Nodes (The "Informative" aspect) */}
+              
+              {/* Sensor 1 - Storage */}
+              <g transform="translate(80, 160)">
+                <circle cx="0" cy="0" r="6" fill="var(--brand-cream)" />
+                <line x1="0" y1="0" x2="-20" y2="-20" stroke="var(--brand-cream)" strokeWidth="1" />
+                <rect x="-100" y="-55" width="90" height="35" fill="rgba(11, 16, 30, 0.9)" stroke="var(--brand-cream)" strokeWidth="1" rx="2" />
+                <text x="-95" y="-40" fill="var(--brand-cream)" fontSize="10" fontWeight="700">T-101 LVL</text>
+                <text x="-95" y="-25" fill="rgba(242, 232, 207, 0.7)" fontSize="10">84.2% | STABLE</text>
+              </g>
+
+              {/* Sensor 2 - Main Processing (CRITICAL ANOMALY) */}
+              <g transform="translate(450, 350)">
+                <circle cx="0" cy="0" r="8" fill="var(--brand-brown)" />
+                <circle cx="0" cy="0" r="16" fill="none" stroke="var(--brand-brown)" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
+                <line x1="0" y1="0" x2="40" y2="40" stroke="var(--brand-brown)" strokeWidth="1.5" />
+                <rect x="40" y="40" width="130" height="50" fill="rgba(166, 124, 82, 0.15)" stroke="var(--brand-brown)" strokeWidth="1.5" rx="2" />
+                <text x="48" y="58" fill="var(--brand-brown)" fontSize="11" fontWeight="800">PUMP P101 - ALERT</text>
+                <text x="48" y="72" fill="var(--brand-cream)" fontSize="10">TEMP: 82°C (HIGH)</text>
+                <text x="48" y="84" fill="var(--brand-cream)" fontSize="10">VIB: 4.2 mm/s</text>
+              </g>
+
+              {/* Sensor 3 - Control */}
+              <g transform="translate(750, 200)">
+                <circle cx="0" cy="0" r="6" fill="var(--brand-cream)" />
+                <line x1="0" y1="0" x2="-30" y2="20" stroke="var(--brand-cream)" strokeWidth="1" />
+                <rect x="-110" y="20" width="80" height="35" fill="rgba(11, 16, 30, 0.9)" stroke="var(--brand-cream)" strokeWidth="1" rx="2" />
+                <text x="-105" y="35" fill="var(--brand-cream)" fontSize="10" fontWeight="700">NETWORK</text>
+                <text x="-105" y="50" fill="rgba(242, 232, 207, 0.7)" fontSize="10">AIR-GAPPED</text>
+              </g>
+
+              {/* Camera / Surveillance Icons (Adding realism like Among Us security) */}
+              <g fill="none" stroke="var(--brand-cream)" strokeWidth="1.5">
+                <circle cx="300" cy="110" r="8" />
+                <circle cx="300" cy="110" r="3" fill="var(--brand-cream)" />
+                <path d="M 300 102 L 315 90 M 300 118 L 315 130" strokeWidth="1" opacity="0.5" />
+                
+                <circle cx="600" cy="400" r="8" />
+                <circle cx="600" cy="400" r="3" fill="var(--brand-cream)" />
+                <path d="M 600 408 L 585 420 M 600 392 L 585 380" strokeWidth="1" opacity="0.5" />
               </g>
             </svg>
             
-            {/* Map Overlay Stats */}
-            <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(11, 16, 30, 0.8)', padding: '12px', border: '1px solid var(--brand-brown)', borderRadius: '4px'}}>
-              <div style={{color: 'var(--brand-cream)', fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '4px'}}>LIVE FEED</div>
-              <div style={{color: 'var(--text-secondary)', fontSize: '0.75rem'}}>Sector 4 Active</div>
-              <div style={{color: 'var(--brand-brown)', fontSize: '0.75rem', marginTop: '4px', fontWeight: 'bold'}}>1 Anomaly Detected</div>
+            {/* Map Overlay Stats Panel */}
+            <div style={{position: 'absolute', top: '16px', left: '16px', background: 'rgba(6, 11, 20, 0.85)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: '6px', backdropFilter: 'blur(4px)'}}>
+              <div style={{color: 'var(--brand-cream)', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '12px', letterSpacing: '1px'}}>SYSTEM TELEMETRY</div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '150px', fontSize: '0.8rem' }}>
+                  <span style={{color: 'var(--text-secondary)'}}>Overall Status:</span>
+                  <span style={{color: 'var(--brand-brown)', fontWeight: 'bold'}}>WARNING</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '150px', fontSize: '0.8rem' }}>
+                  <span style={{color: 'var(--text-secondary)'}}>Active Nodes:</span>
+                  <span style={{color: 'var(--brand-cream)'}}>142</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '150px', fontSize: '0.8rem' }}>
+                  <span style={{color: 'var(--text-secondary)'}}>Bandwidth:</span>
+                  <span style={{color: 'var(--brand-cream)'}}>Local Only</span>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid var(--border-color)' }}>
+                <div style={{color: 'var(--brand-brown)', fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase'}}>AI Diagnostic Focus:</div>
+                <div style={{color: 'var(--brand-cream)', fontSize: '0.85rem', marginTop: '4px'}}>Cracking Unit → Pump P101</div>
+              </div>
             </div>
           </div>
         </div>
