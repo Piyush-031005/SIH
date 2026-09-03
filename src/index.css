@@ -1,0 +1,525 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #0b1120;
+  color: #f8fafc;
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------- */
+/* RICH DASHBOARD LAYOUT                                 */
+/* ----------------------------------------------------- */
+
+.rich-dashboard {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* --- SIDEBAR --- */
+.rd-sidebar {
+  width: 320px;
+  background: #0f172a;
+  border-right: 1px solid #1e293b;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  box-shadow: 10px 0 25px rgba(0,0,0,0.8);
+}
+
+.rd-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.mrpl-logo {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #1e3a8a, #0284c7);
+  border: 2px solid #ea580c;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: white;
+  box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+}
+
+.rd-brand h2 {
+  font-size: 1.15rem;
+  color: #f8fafc;
+}
+
+.rd-brand p {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.rd-steps-container {
+  flex-grow: 1;
+}
+
+.rd-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.rd-step.past {
+  opacity: 0.8;
+}
+
+.rd-step.active {
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+.step-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1e293b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 2px solid #334155;
+}
+
+.rd-step.past .step-indicator {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.rd-step.active .step-indicator {
+  background: rgba(234, 88, 12, 0.2);
+  border-color: #ea580c;
+  color: #ea580c;
+  box-shadow: 0 0 15px rgba(234, 88, 12, 0.5);
+}
+
+.step-text strong {
+  display: block;
+  font-size: 1rem;
+  color: #f8fafc;
+}
+
+.step-text span {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.rd-step.active .step-text strong {
+  color: #ea580c;
+}
+
+.rd-proof-box {
+  background: #0b1120;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 0.85rem;
+}
+.proof-item:last-child { margin-bottom: 0; }
+.proof-item svg { color: #10b981; }
+
+/* --- MAIN CANVAS & 3D ENVIRONMENT --- */
+.rd-canvas {
+  flex-grow: 1;
+  position: relative;
+  background: #040812;
+  overflow: auto; /* Allows panning if it's huge */
+}
+
+.blueprint-grid {
+  position: absolute;
+  top: 0; left: 0; width: 2500px; height: 1500px;
+  background-image: 
+    linear-gradient(rgba(30, 58, 138, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 138, 0.2) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 1;
+  animation: panGrid 20s linear infinite;
+}
+
+@keyframes panGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: -60px 60px; }
+}
+
+.canvas-title {
+  position: fixed;
+  top: 2rem;
+  left: 350px;
+  z-index: 100;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* 3D Container */
+.architecture-diagram {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 2000px;
+  height: 1000px;
+  z-index: 10;
+}
+
+.3d-container {
+  perspective: 2500px;
+  transform-style: preserve-3d;
+}
+
+/* Big 3D Nodes */
+.arch-node.node-3d {
+  position: absolute;
+  width: 340px;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+  border-radius: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-left: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  /* Thick 3D Block Shadow */
+  box-shadow: 
+    25px 25px 50px rgba(0,0,0,0.8),
+    -5px -5px 15px rgba(255,255,255,0.02),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  transform: translateZ(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.arch-node.pulse-3d {
+  border-color: #3b82f6;
+  border-width: 2px;
+  /* Levitates up when active */
+  transform: translateZ(80px) scale(1.05);
+  box-shadow: 
+    0 40px 80px rgba(0,0,0,0.9),
+    0 0 40px rgba(59, 130, 246, 0.3),
+    inset 0 2px 0 rgba(255,255,255,0.2);
+}
+
+/* 3D Icons */
+.icon-3d {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #94a3b8;
+  box-shadow: 
+    inset 2px 2px 5px rgba(255,255,255,0.05),
+    inset -2px -2px 5px rgba(0,0,0,0.5),
+    5px 5px 15px rgba(0,0,0,0.4);
+}
+
+.pulse-3d .icon-3d {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  box-shadow: 
+    inset 2px 2px 5px rgba(255,255,255,0.3),
+    5px 5px 20px rgba(59, 130, 246, 0.5);
+}
+
+.node-details h4 {
+  font-size: 1.15rem;
+  color: #f1f5f9;
+  margin-bottom: 0.25rem;
+}
+.node-details p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.node-tags {
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  display: flex;
+  gap: 0.5rem;
+  transform: translateZ(0px);
+}
+
+.node-tags span {
+  font-size: 0.75rem;
+  background: #1e293b;
+  color: #cbd5e1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Cyber Scanner Animation */
+.arch-node { position: relative; }
+
+.pulse-3d .cyber-scanner {
+  position: absolute;
+  top: 10px; left: 10px; right: 10px;
+  height: 2px;
+  background: #ea580c;
+  box-shadow: 0 0 15px 5px rgba(234, 88, 12, 0.6);
+  opacity: 0.9;
+  animation: cyberScan 2.5s ease-in-out infinite alternate;
+  z-index: 50;
+  border-radius: 50%;
+}
+
+@keyframes cyberScan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.9; }
+  100% { transform: translateY(180px); opacity: 0; }
+}
+
+/* --- THE 3D ENGINE --- */
+.engine-container-wrapper.node-3d {
+  position: absolute;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border-radius: 20px;
+  padding: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 
+    30px 30px 60px rgba(0,0,0,0.9),
+    -5px -5px 15px rgba(255,255,255,0.03);
+  transform: translateZ(30px);
+  transform-style: preserve-3d;
+}
+
+.engine-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 2px dashed #334155;
+  padding-bottom: 1rem;
+}
+
+.engine-housing {
+  position: relative;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+}
+
+.line-3d {
+  background: linear-gradient(to bottom, #475569, #1e293b);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+  height: 12px;
+  border-radius: 6px;
+}
+
+.gear-3d {
+  border-width: 6px;
+  border-color: #64748b;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 5px 10px rgba(0,0,0,0.5);
+  width: 48px; height: 48px;
+  left: 30px; bottom: -10px;
+}
+
+.pistons-row {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.rd-piston {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
+}
+
+.rd-piston-label {
+  font-size: 0.75rem;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.rd-piston-mech {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rd-piston-mech.pumping {
+  animation: rdPump3D 1s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+/* 3D Metallic Rods and Heads */
+.head-3d {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  box-shadow: 
+    inset -5px -5px 10px rgba(0,0,0,0.4),
+    inset 5px 5px 10px rgba(255,255,255,0.4),
+    0 10px 15px rgba(0,0,0,0.5);
+  transform: translateZ(10px);
+}
+
+.rod-3d {
+  width: 12px;
+  height: 40px;
+  background: linear-gradient(90deg, #94a3b8, #f8fafc, #64748b);
+  box-shadow: 5px 0 10px rgba(0,0,0,0.4);
+}
+
+.joint-3d {
+  width: 20px;
+  height: 20px;
+  border-width: 4px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.3);
+}
+
+@keyframes rdPump3D {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50px); }
+}
+
+.engine-active-glow {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  animation: enginePulse3D 2s infinite alternate;
+}
+
+@keyframes enginePulse3D {
+  0% { box-shadow: inset 0 0 20px rgba(234, 88, 12, 0.1); }
+  100% { box-shadow: inset 0 0 60px rgba(234, 88, 12, 0.4); }
+}
+
+/* --- NUMBER BADGES --- */
+.node-number-badge {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 36px;
+  height: 36px;
+  background: #ea580c;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 900;
+  box-shadow: 0 5px 15px rgba(234, 88, 12, 0.6), inset 0 2px 4px rgba(255,255,255,0.4);
+  border: 3px solid #0f172a;
+  z-index: 60;
+  transform: translateZ(50px);
+}
+
+/* --- NODE ACTIVE TEXT --- */
+.node-active-text {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateZ(80px);
+  width: 280px;
+  background: rgba(234, 88, 12, 0.95);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+  animation: slideDown 0.3s ease-out forwards;
+  z-index: 100;
+  pointer-events: none;
+  border: 1px solid #c2410c;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translate(-50%, -10px) translateZ(80px); }
+  to { opacity: 1; transform: translate(-50%, 0) translateZ(80px); }
+}
+
+.packet {
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}
+.rd-svg-lines {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  transform: translateZ(5px);
+}
+
+.rd-svg-lines .line {
+  fill: none;
+  stroke: #1e293b;
+  stroke-width: 4;
+  transition: all 0.5s;
+}
+
+.rd-svg-lines .line.active {
+  stroke: #3b82f6;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+  stroke-dasharray: 12;
+  animation: flow 1s linear infinite;
+}
+
+@keyframes flow {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+.packet-3d {
+  filter: drop-shadow(0 0 12px rgba(255,255,255,1));
+}
