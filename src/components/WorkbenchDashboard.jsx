@@ -129,7 +129,7 @@ export default function WorkbenchDashboard() {
           <div className="sec-grid">
             <div className="sec-item">
               <span className="sec-label">Internet</span>
-              <span className="sec-value text-red"><WifiOff size={16}/> Disabled</span>
+              <span className="sec-value text-blue"><WifiOff size={16}/> Disabled</span>
             </div>
             <div className="sec-item">
               <span className="sec-label">Outbound Calls</span>
@@ -206,7 +206,7 @@ export default function WorkbenchDashboard() {
             </div>
             <div className="h-metric">
               <span className="h-label"><Thermometer size={16}/> Temp</span>
-              <span className="h-value">82°C <span className="text-red">↑</span></span>
+              <span className="h-value">82°C <span className="text-blue">↑</span></span>
             </div>
             <div className="h-risk">
               <span>Risk: Medium</span>
@@ -222,16 +222,16 @@ export default function WorkbenchDashboard() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
             <h3 style={{ border: 'none', margin: 0, padding: 0 }}><Map size={20}/> MRPL Facility Top View</h3>
             <div style={{ display: 'flex', gap: '12px' }}>
-              <span style={{ fontSize: '0.75rem', color: '#4ade80', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#4ade80'}}></div> Normal Operation</span>
-              <span style={{ fontSize: '0.75rem', color: '#F98513', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#F98513'}}></div> Warning</span>
-              <span style={{ fontSize: '0.75rem', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#ef4444'}}></div> Critical Alert</span>
+              <span style={{ fontSize: '0.75rem', color: '#FBF3F0', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#FBF3F0'}}></div> Normal Operation</span>
+              <span style={{ fontSize: '0.75rem', color: '#014BAA', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#014BAA'}}></div> Warning</span>
+              <span style={{ fontSize: '0.75rem', color: '#014BAA', display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{width: 8, height: 8, borderRadius: '50%', backgroundColor: '#014BAA'}}></div> Critical Alert</span>
             </div>
           </div>
           
           <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
             <div style={{ flex: 1, background: 'var(--bg-panel)', padding: '16px', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Plant Status</div>
-              <div style={{ fontSize: '1.1rem', color: '#ef4444', fontWeight: 'bold' }}>CRITICAL ALERT</div>
+              <div style={{ fontSize: '1.1rem', color: '#014BAA', fontWeight: 'bold' }}>CRITICAL ALERT</div>
             </div>
             <div style={{ flex: 1, background: 'var(--bg-panel)', padding: '16px', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Sensors Online</div>
@@ -241,9 +241,9 @@ export default function WorkbenchDashboard() {
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Crude Throughput</div>
               <div style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: 'bold' }}>320 TBD</div>
             </div>
-            <div style={{ flex: 2, background: 'rgba(239, 68, 68, 0.05)', padding: '16px', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
-              <div style={{ fontSize: '0.75rem', color: '#ef4444', marginBottom: '4px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>AI Diagnostic Focus</div>
-              <div style={{ fontSize: '1.1rem', color: '#ef4444', fontWeight: 'bold' }}>FCCU Reactor → Valve V-204 Stuck</div>
+            <div style={{ flex: 2, background: 'rgba(1, 75, 170, 0.05)', padding: '16px', borderRadius: '6px', border: '1px solid rgba(1, 75, 170, 0.2)' }}>
+              <div style={{ fontSize: '0.75rem', color: '#014BAA', marginBottom: '4px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>AI Diagnostic Focus</div>
+              <div style={{ fontSize: '1.1rem', color: '#014BAA', fontWeight: 'bold' }}>FCCU Reactor → Valve V-204 Stuck</div>
             </div>
           </div>
 
@@ -279,7 +279,7 @@ export default function WorkbenchDashboard() {
               <rect x="0" y="0" width="1200" height="700" fill="url(#gridLarge)" />
 
               {/* Complex Arterial Pipe Network (The Main Pipe Rack) */}
-              <g stroke="rgba(249, 133, 19, 0.3)" strokeWidth="3" fill="none" opacity="0.8">
+              <g stroke="rgba(1, 75, 170, 0.3)" strokeWidth="3" fill="none" opacity="0.8">
                 {/* Horizontal main rack */}
                 <path d="M 50 350 L 1150 350" />
                 <path d="M 50 360 L 1150 360" />
@@ -368,7 +368,7 @@ export default function WorkbenchDashboard() {
               </g>
 
               {/* Truck Loading Details */}
-              <g fill="#F98513" opacity="0.7">
+              <g fill="#014BAA" opacity="0.7">
                 {/* Trucks */}
                 <rect x="1040" y="470" width="20" height="45" rx="3" />
                 <rect x="1090" y="470" width="20" height="45" rx="3" />
@@ -393,50 +393,50 @@ export default function WorkbenchDashboard() {
 
               {/* Enhanced Flare Stack */}
               <g transform="translate(150, 310)">
-                <path d="M -15 0 L 15 0 L 10 -40 L -10 -40 Z" fill="var(--border-color)" opacity="0.6" stroke="#F98513" strokeWidth="1" />
-                <circle cx="0" cy="-40" r="10" fill="none" stroke="#F98513" strokeWidth="2" filter="url(#glowOrange)" />
-                <circle cx="0" cy="-40" r="4" fill="#ef4444" className="hazard-ping" />
+                <path d="M -15 0 L 15 0 L 10 -40 L -10 -40 Z" fill="var(--border-color)" opacity="0.6" stroke="#014BAA" strokeWidth="1" />
+                <circle cx="0" cy="-40" r="10" fill="none" stroke="#014BAA" strokeWidth="2" filter="url(#glowOrange)" />
+                <circle cx="0" cy="-40" r="4" fill="#014BAA" className="hazard-ping" />
                 <text x="0" y="-55" textAnchor="middle" fill="var(--brand-cream)" fontSize="10" fontWeight="600">FLARE STACK</text>
               </g>
 
               {/* 🟢 Status Signals: NORMAL (Green) */}
               <g>
-                <circle cx="100" cy="110" r="4" fill="#4ade80" />
-                <circle cx="180" cy="110" r="4" fill="#4ade80" />
-                <circle cx="100" cy="190" r="4" fill="#4ade80" />
-                <circle cx="390" cy="150" r="4" fill="#4ade80" />
-                <circle cx="450" cy="100" r="4" fill="#4ade80" />
-                <circle cx="880" cy="120" r="4" fill="#4ade80" />
-                <circle cx="1020" cy="180" r="4" fill="#4ade80" />
-                <circle cx="890" cy="490" r="4" fill="#4ade80" />
-                <circle cx="960" cy="550" r="4" fill="#4ade80" />
-                <circle cx="120" cy="550" r="4" fill="#4ade80" />
-                <circle cx="200" cy="600" r="4" fill="#4ade80" />
-                <circle cx="425" cy="550" r="4" fill="#4ade80" />
-                <circle cx="630" cy="550" r="4" fill="#4ade80" />
-                <circle cx="880" cy="295" r="4" fill="#4ade80" />
-                <circle cx="1080" cy="295" r="4" fill="#4ade80" />
+                <circle cx="100" cy="110" r="4" fill="#FBF3F0" />
+                <circle cx="180" cy="110" r="4" fill="#FBF3F0" />
+                <circle cx="100" cy="190" r="4" fill="#FBF3F0" />
+                <circle cx="390" cy="150" r="4" fill="#FBF3F0" />
+                <circle cx="450" cy="100" r="4" fill="#FBF3F0" />
+                <circle cx="880" cy="120" r="4" fill="#FBF3F0" />
+                <circle cx="1020" cy="180" r="4" fill="#FBF3F0" />
+                <circle cx="890" cy="490" r="4" fill="#FBF3F0" />
+                <circle cx="960" cy="550" r="4" fill="#FBF3F0" />
+                <circle cx="120" cy="550" r="4" fill="#FBF3F0" />
+                <circle cx="200" cy="600" r="4" fill="#FBF3F0" />
+                <circle cx="425" cy="550" r="4" fill="#FBF3F0" />
+                <circle cx="630" cy="550" r="4" fill="#FBF3F0" />
+                <circle cx="880" cy="295" r="4" fill="#FBF3F0" />
+                <circle cx="1080" cy="295" r="4" fill="#FBF3F0" />
               </g>
 
               {/* 🟡 Status Signals: WARNING (Yellow/Orange) */}
               <g>
-                <circle cx="180" cy="190" r="4" fill="#F98513" />
-                <line x1="180" y1="190" x2="220" y2="230" stroke="#F98513" strokeWidth="1" />
-                <text x="225" y="240" fill="#F98513" fontSize="10">LVL 95%</text>
+                <circle cx="180" cy="190" r="4" fill="#014BAA" />
+                <line x1="180" y1="190" x2="220" y2="230" stroke="#014BAA" strokeWidth="1" />
+                <text x="225" y="240" fill="#014BAA" fontSize="10">LVL 95%</text>
                 
-                <circle cx="700" cy="500" r="4" fill="#F98513" />
-                <text x="710" y="505" fill="#F98513" fontSize="10">H2S SPIKE</text>
+                <circle cx="700" cy="500" r="4" fill="#014BAA" />
+                <text x="710" y="505" fill="#014BAA" fontSize="10">H2S SPIKE</text>
               </g>
 
               {/* 🔴 Status Signals: CRITICAL ALERT (Red) inside FCCU */}
               <g transform="translate(680, 150)">
-                <circle cx="0" cy="0" r="6" fill="#ef4444" filter="url(#glowRed)" className="hazard-ping" />
-                <circle cx="0" cy="0" r="15" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
+                <circle cx="0" cy="0" r="6" fill="#014BAA" filter="url(#glowRed)" className="hazard-ping" />
+                <circle cx="0" cy="0" r="15" fill="none" stroke="#014BAA" strokeWidth="2" strokeDasharray="4 4" className="rotating-ring" />
                 
                 {/* Warning Popup Overlay */}
-                <line x1="0" y1="0" x2="70" y2="-50" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="70" y="-85" width="180" height="65" fill="#222527" stroke="#ef4444" strokeWidth="1.5" rx="4" />
-                <text x="78" y="-65" fill="#ef4444" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
+                <line x1="0" y1="0" x2="70" y2="-50" stroke="#014BAA" strokeWidth="1.5" />
+                <rect x="70" y="-85" width="180" height="65" fill="#222527" stroke="#014BAA" strokeWidth="1.5" rx="4" />
+                <text x="78" y="-65" fill="#014BAA" fontSize="12" fontWeight="800">FCCU REACTOR ALERT</text>
                 <text x="78" y="-48" fill="var(--brand-cream)" fontSize="10">PRESSURE: 42.5 kg/cm²</text>
                 <text x="78" y="-32" fill="var(--brand-cream)" fontSize="10">VALVE V-204 STUCK</text>
               </g>
